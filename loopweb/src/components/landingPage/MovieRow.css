@@ -1,0 +1,8 @@
+
+.movieRow-container {
+    height: 485px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*padding-left: 50px;*/
+}

@@ -1,13 +1,20 @@
 import React from "react";
-import { Header } from '../../components/common';
+import { Footer, Header } from '../../components/common';
+import { MovieContent, ScreeningTimes, Reviews } from "../../components/moviePage"
 import './MoviePage.css';
+
+
 
 function MoviePage () {
     return (
         <>
             <Header /> 
 
-            <p> This is the movie page</p>
+            <MovieContent />
+            <ScreeningTimes />
+            <Reviews />
+
+            <Footer />
         </>
     )
 }

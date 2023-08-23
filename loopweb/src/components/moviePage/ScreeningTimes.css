@@ -1,0 +1,27 @@
+
+.screeningTimes-container {
+    height: 600px;
+}
+
+.screeningTimes-container_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screeningTimes-container_box-title{
+    width: 1140px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.screeningTimes-container_box-flexGrid{
+    width: 1140px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aliceblue;
+}

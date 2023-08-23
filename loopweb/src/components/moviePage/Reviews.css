@@ -1,0 +1,40 @@
+
+.reviews-container {
+    height: 700px;
+}
+
+.reviews-container_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-container_box-row{
+    width: 1040px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviews-container_box-title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.screeningTimes-container_box-button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.reviews-container_box-flexGrid{
+    width: 1040px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aliceblue;
+}
