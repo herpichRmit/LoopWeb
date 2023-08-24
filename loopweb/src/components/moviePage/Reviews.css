@@ -1,6 +1,8 @@
 
 .reviews-container {
-    height: 700px;
+    min-height: 300px;
+    height: fit-content;
+    padding-bottom: 100px;
 }
 
 .reviews-container_box{
@@ -16,7 +18,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
 }
 
 .reviews-container_box-title{
@@ -33,8 +35,8 @@
 
 .reviews-container_box-flexGrid{
     width: 1040px;
-    height: 500px;
     display: flex;
-    flex-wrap: wrap;
-    background-color: aliceblue;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25px;
 }

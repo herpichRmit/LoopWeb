@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from '../common';
 import './MovieContent.css';
 
 
