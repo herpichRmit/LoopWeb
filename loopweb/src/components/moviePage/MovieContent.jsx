@@ -2,7 +2,9 @@ import React from "react";
 import './MovieContent.css';
 
 
-function MovieContent () {
+function MovieContent (props) {
+
+
     return (
         <>
             <div className="movieContent-container">
@@ -11,30 +13,30 @@ function MovieContent () {
                 </div>
                 <div className="movieContent-container_imageBlockRow">
                     <div className="movieContent-container_imageBlockRow-graphic">
-                        <img src={process.env.PUBLIC_URL + "/no_image.png"} alt=""></img>
+                        <img src={process.env.PUBLIC_URL + props.movie.img} alt=""></img>
                     </div>
                     <div className="movieContent-container_imageBlockRow-infoBlock">
                         <div className="movieContent-container_imageBlockRow-infoBlock-title">
-                            <h1>Movie Title Here</h1>
+                            <h1>{props.movie.title}</h1>
                         </div>
                         <div className="movieContent-container_imageBlockRow-infoBlock-annotation">
-                            <p>Annotation</p>
+                            <p>View cinemas below for session times.</p>
                         </div>
                         <div className="movieContent-container_imageBlockRow-infoBlock-description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere, augue et maximus tincidunt, ex nisi gravida lacus, sit amet aliquet augue nisi porttitor lacus. Quisque vulputate dolor ac facilisis volutpat. Donec quis enim gravida, consequat diam vel, consectetur ante. Mauris dignissim massa tincidunt velit porta, non euismod ligula porttitor. Fusce vitae accumsan metus. Suspendisse consequat diam lacinia lacus eleifend maximus. Curabitur ut dapibus massa. Donec ut volutpat diam. Aenean gravida maximus aliquam. Phasellus suscipit eleifend orci, vitae laoreet purus ultricies vitae. Ut non volutpat augue. Vivamus accumsan nibh eu euismod maximus. Vivamus euismod, est nec accumsan scelerisque, mi tellus volutpat nulla, et rhoncus orci velit quis ex.</p>
+                            <p>{props.movie.desc}</p>
                         </div>
                         <div className="movieContent-container_imageBlockRow-infoBlock-detail">
                             <div className="movieContent-container_imageBlockRow-infoBlock-detail_left">
-                                <p>Release Date: </p>
-                                <p>Running Time: </p>
+                                <p>Release date: </p>
+                                <p>Running time: </p>
                                 <p>Director: </p>
                                 <p>Cast: </p>
                             </div>
                             <div className="movieContent-container_imageBlockRow-infoBlock-detail_right">
-                                <p>xx/xx/xxx  </p>
-                                <p>xx mins </p>
-                                <p>John Smith </p>
-                                <p>Jane Doe, John Smith</p>
+                                <p>{props.movie.release}</p>
+                                <p>{props.movie.runtime}</p>
+                                <p>{props.movie.director}</p>
+                                <p>{props.movie.cast}</p>
                             </div>
 
                         </div>

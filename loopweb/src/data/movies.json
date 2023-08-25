@@ -1,0 +1,35 @@
+[
+    {
+        "id" : 1,
+        "title" : "Midnight in Paris", 
+        "desc" : "While on a trip to Paris with his fiancée's family, a nostalgic screenwriter finds himself mysteriously going back to the 1920s every day at midnight.", 
+        "release" : "2011", 
+        "runtime" : "1h 34m", 
+        "director" : "Woody Allen", 
+        "cast" : "Owen Wilson, Rachel McAdams, Kathy Bates", 
+        "img" : "/posters/midnightinparis.jpg", 
+        "times" : ["4:30"]
+    },
+    {
+        "id" : 2,
+        "title" : "Akira", 
+        "desc" : "A secret military project endangers Neo-Tokyo when it turns a biker gang member into a rampaging psychic psychopath who can only be stopped by a teenager, his gang of biker friends and a group of psychics.", 
+        "release" : "1998", 
+        "runtime" : "2h 4m", 
+        "director" : "Katsuhiro Otimo", 
+        "cast" : "Mitsuo Iwata, Nozomu Sasaki, Mami Koyama", 
+        "img" : "/posters/akira.jpg", 
+        "times" : ["4:30"]
+    },
+    {
+        "id" : 3,
+        "title" : "Step Brothers", 
+        "desc" : "Two aimless middle-aged losers still living at home are forced against their will to become roommates when their parents marry.", 
+        "release" : "2008", 
+        "runtime" : "1h 38m", 
+        "director" : "Adam McKay", 
+        "cast" : "Will Ferrel, John C. Reilly", 
+        "img" : "/posters/stepbrothers.jpg", 
+        "times" : ["4:30"]
+    }
+]

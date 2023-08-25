@@ -1,0 +1,35 @@
+[
+    {
+        "id" : 1,
+        "title" : "Beau Is Afraid", 
+        "desc" : "Following the sudden death of his mother, a mild-mannered but anxiety-ridden man confronts his darkest fears as he embarks on an epic, Kafkaesque odyssey back home.", 
+        "release" : "2023", 
+        "runtime" : "2h 59m", 
+        "director" : "Ari Aster", 
+        "cast" : "Joaquin Phoenix, Patti LuPone, Amy Ryan", 
+        "img" : "/posters/beauisafraid.jpg", 
+        "times" : ["4:30"]
+    },
+    {
+        "id" : 2,
+        "title" : "Barbie", 
+        "desc" : "Barbie suffers a crisis that leads her to question her world and her existence.", 
+        "release" : "2023", 
+        "runtime" : "1h 54m", 
+        "director" : "Greta Gerwig", 
+        "cast" : "Margot Robbie, Ryan Gosling, Issa Rae", 
+        "img" : "/posters/barbie.jpeg", 
+        "times" : ["4:30"]
+    },
+    {
+        "id" : 3,
+        "title" : "Spider-Man: Beyond the Spider-Verse", 
+        "desc" : "After leaving off from Spider-Man: Across the Spider-Verse, the story continues.", 
+        "release" : "2024", 
+        "runtime" : "TBC", 
+        "director" : "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson", 
+        "cast" : "Shameik Moore, Haliee Steinfeld, Jason Schwartzman", 
+        "img" : "/posters/spiderman.jpeg", 
+        "times" : ["4:30"]
+    }
+]

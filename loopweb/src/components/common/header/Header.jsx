@@ -1,6 +1,6 @@
 import React from "react";
 import './Header.css';
-
+import { NavLink } from "react-router-dom";
 
 function Header () {
     return (
@@ -12,8 +12,8 @@ function Header () {
                             Loop web
                         </div>
                         <div className="header-container_content-navigation">
-                            <a href="#" >Home</a> 
-                            <a href="#" >Screening Times</a>
+                            <NavLink to="/" exact>Home</NavLink>
+                            <NavLink to="/" exact>Screening Times</NavLink>
                         </div>
                     </div>
                     <div className="header-container_navigationActions">
