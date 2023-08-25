@@ -9,7 +9,7 @@ function MovieContent (props) {
         <>
             <div className="movieContent-container">
                 <div className="movieContent-container_space">
-                    <p></p>
+                    <img src={process.env.PUBLIC_URL + "/landing_banner_unsplash.jpg"} alt="" width="2912" height="4368"></img>
                 </div>
                 <div className="movieContent-container_imageBlockRow">
                     <div className="movieContent-container_imageBlockRow-graphic">

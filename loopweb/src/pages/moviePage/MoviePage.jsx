@@ -23,8 +23,8 @@ function MoviePage () {
     return (
         <>
             <MovieContent movie={selectedMovie} />
-            <ScreeningTimes />
-            <Reviews />
+            <ScreeningTimes times={selectedMovie.times} />
+            <Reviews reviews={selectedMovie.reviews} />
         </>
     )
 }

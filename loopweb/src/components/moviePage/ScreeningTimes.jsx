@@ -3,7 +3,7 @@ import './ScreeningTimes.css';
 import { ScreeningTimesCard } from '../moviePage' ;
 
 
-function ScreeningTimes () {
+function ScreeningTimes (props) {
 
     const data = {
         "Melbourne Central" : ["4:30pm","5:45pm","6:00pm","7:00pm","8:00pm",],
@@ -12,7 +12,7 @@ function ScreeningTimes () {
         "Mount Gambier" : ["4:30pm","5:45pm","7:00","7:15",],
     }
 
-    const cards = Object.entries(data).map( ([key,value]) => {
+    const cards = Object.entries(props.times).map( ([key,value]) => {
         return <ScreeningTimesCard location={key} time={value} ></ScreeningTimesCard>
     })
 

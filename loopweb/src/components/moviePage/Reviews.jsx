@@ -2,16 +2,10 @@ import React from "react";
 import './Reviews.css';
 import { ReviewCard } from '../moviePage' ;
 
-function Reviews () {
+function Reviews (props) {
 
-    const data = [
-        ["Headline","John Smith","Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, voluptate aut a fugiat porro culpa dolores quos nulla vitae neque optio eius quae esse facilis repellat blanditiis vel, quia sequi.","1/5"],
-        ["Another headline","John Smith","Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, voluptate aut a fugiat porro culpa dolores quos nulla vitae neque optio eius quae esse facilis repellat blanditiis vel, quia sequi.","5/5"],
-        ["Testing headline","John Smith","Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, voluptate aut a fugiat porro culpa dolores quos nulla vitae neque optio eius quae esse facilis repellat blanditiis vel, quia sequi.","4/5"],
-    ]
-
-    const cards = data.map(review => {
-        return <ReviewCard headline={review[0]} author={review[1]} desc={review[2]} rating={review[3]} />
+    const cards = props.reviews.map(review => {
+        return <ReviewCard headline={review.title} author={review.name} desc={review.review} rating={review.rating} />
     })
 
 

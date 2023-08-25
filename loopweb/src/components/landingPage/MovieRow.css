@@ -5,4 +5,5 @@
     flex-direction: row;
     justify-content: center;
     /*padding-left: 50px;*/
+    background: linear-gradient(to bottom, white, black, #730507);
 }

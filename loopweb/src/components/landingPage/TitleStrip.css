@@ -3,4 +3,9 @@
     height: 90px;
     display: flex;
     justify-content: center;
+    background-color: black;
+}
+
+.bar h1 {
+    color: white;
 }

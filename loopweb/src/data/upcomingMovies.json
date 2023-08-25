@@ -8,7 +8,33 @@
         "director" : "Ari Aster", 
         "cast" : "Joaquin Phoenix, Patti LuPone, Amy Ryan", 
         "img" : "/posters/beauisafraid.jpg", 
-        "times" : ["4:30"]
+        "times" : {
+            "Melbourne Central" : ["4:30pm","5:45pm","6:00pm","7:00pm","8:00pm"],
+            "Highpoint" : ["4:30pm","5:45pm","6:00pm","7:00pm"],
+            "Eastland" : ["5:45pm","6:00pm","6:30pm","7:15pm","8:00pm"],
+            "Mount Gambier" : ["4:30pm","5:45pm","7:00","7:15"]
+        },
+        "reviews" : [
+            {
+                "title" : "Test 1",
+                "name" : "John Smith",
+                "review" : "Testing testing",
+                "rating" : 2
+            },
+            {
+                "title" : "Test 2",
+                "name" : "Jane Doe",
+                "review" : "Testing",
+                "rating" : 3
+            },
+            {
+                "title" : " Test 3",
+                "name" : "Ethan Herpich",
+                "review" : "Testing testing testing ... testing",
+                "rating" : 5
+            }
+        ]
+        
     },
     {
         "id" : 2,
@@ -19,7 +45,32 @@
         "director" : "Greta Gerwig", 
         "cast" : "Margot Robbie, Ryan Gosling, Issa Rae", 
         "img" : "/posters/barbie.jpeg", 
-        "times" : ["4:30"]
+        "times" : {
+            "Melbourne Central" : ["4:30pm","5:45pm","6:00pm","7:00pm","8:00pm"],
+            "Highpoint" : ["4:30pm","5:45pm","6:00pm","7:00pm"],
+            "Eastland" : ["5:45pm","6:00pm","6:30pm","7:15pm","8:00pm"],
+            "Mount Gambier" : ["4:30pm","5:45pm","7:00","7:15"]
+        },
+        "reviews" : [
+            {
+                "title" : "Test 1",
+                "name" : "John Smith",
+                "review" : "Testing testing",
+                "rating" : 2
+            },
+            {
+                "title" : "Test 2",
+                "name" : "Jane Doe",
+                "review" : "Testing",
+                "rating" : 3
+            },
+            {
+                "title" : " Test 3",
+                "name" : "Ethan Herpich",
+                "review" : "Testing testing testing ... testing",
+                "rating" : 5
+            }
+        ]
     },
     {
         "id" : 3,
@@ -30,6 +81,31 @@
         "director" : "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson", 
         "cast" : "Shameik Moore, Haliee Steinfeld, Jason Schwartzman", 
         "img" : "/posters/spiderman.jpeg", 
-        "times" : ["4:30"]
+        "times" : {
+            "Melbourne Central" : ["4:30pm","5:45pm","6:00pm","7:00pm","8:00pm"],
+            "Highpoint" : ["4:30pm","5:45pm","6:00pm","7:00pm"],
+            "Eastland" : ["5:45pm","6:00pm","6:30pm","7:15pm","8:00pm"],
+            "Mount Gambier" : ["4:30pm","5:45pm","7:00","7:15"]
+        },
+        "reviews" : [
+            {
+                "title" : "Test 1",
+                "name" : "John Smith",
+                "review" : "Testing testing",
+                "rating" : 2
+            },
+            {
+                "title" : "Test 2",
+                "name" : "Jane Doe",
+                "review" : "Testing",
+                "rating" : 3
+            },
+            {
+                "title" : " Test 3",
+                "name" : "Ethan Herpich",
+                "review" : "Testing testing testing ... testing",
+                "rating" : 5
+            }
+        ]
     }
 ]

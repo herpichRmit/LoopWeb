@@ -2,8 +2,9 @@
 .screeningTimes-container {
     min-height: 200px;
     height: fit-content;
-    padding-top: 50px;
-    padding-bottom: 100px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    background-color: #F2F4F7;
 }
 
 .screeningTimes-container_box{
@@ -28,6 +29,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
 }

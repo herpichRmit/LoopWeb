@@ -1,7 +1,7 @@
 
 
 .movieContent-container {
-    height: 600px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
 
@@ -10,6 +10,12 @@
 .movieContent-container_space {
     height: 200px;
 
+}
+
+.movieContent-container_space img {
+    width: 1440px; 
+    height: 200px; 
+    object-fit: cover;
 }
 
 .movieContent-container_imageBlockRow{
@@ -35,8 +41,8 @@
 
 
 .movieContent-container_imageBlockRow-infoBlock {
-    padding: 25px 0px;
-    height: 350px;
+    padding: 25px 0px 75px 0px;
+    height: fit-content;
     width: 1160px;
     display: flex;
     flex-direction: column;
@@ -54,7 +60,8 @@
 }
 
 .movieContent-container_imageBlockRow-infoBlock-description{
-    height: 132px;
+    height: fit-content;
+    width: 1110px;
     text-align: start;
 }
 
