@@ -42,7 +42,7 @@ function SignInPage ({ setIsLoggedIn }) {
         
         
 
-        //navigate('/');
+        navigate('/');
 
     }
 
