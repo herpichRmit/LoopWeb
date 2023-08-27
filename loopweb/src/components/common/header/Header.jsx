@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import './Header.css';
 import { NavLink } from "react-router-dom";
+import EditAccountModal from "../../editAccountModal/EditAccountModal";
 
 function Header({ isLoggedIn }) {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleClosedModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <>
             <div className="header">
