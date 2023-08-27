@@ -16,17 +16,14 @@ function SignInPage () {
 
     function signIn() {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
-
+        
         const user = {...values, isLoggedIn: true };
 
         localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.getItem(JSON.parse('currentUser'));
-
-
         
-        setIsRegistered(true);
+        //setIsRegistered(true);
 
-        navigate('/');
+        //navigate('/');
 
     }
 

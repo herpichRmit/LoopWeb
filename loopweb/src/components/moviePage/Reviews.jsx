@@ -12,7 +12,9 @@ function Reviews (props) {
     const [editing, setEditing] = useState(false)
     
     // username is used to allow user to edit there reviews
-    const username = "John Doe" // TODO: change to whoever logs in
+
+    const userObj = localStorage.getItem(JSON.parse('currentUser'));
+    const username = "John Doe" // TODO: change to whoever logs in userObj.name
 
     // set initialFormState, used to set the current review so that current review can be edited
     const initialFormState = {id: null, title: '', reviewer: username, desc: '', rating: 0}
@@ -59,6 +61,9 @@ function Reviews (props) {
             console.log(reviews[i].rating)
             sum += reviews[i].rating
         }
+
+        console.log(userObj)
+
         let result = sum/num
         setAvgReview(parseFloat(result.toFixed(1)))
     }
