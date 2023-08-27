@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<LandingPage />}/>
           <Route path="/movies/:movieTitle" element={<MoviePage />} />
           <Route path="/SignIn" element={<SignInPage setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/SignUp" element={<SignUpPage />} />
+          <Route path="/SignUp" element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
         <Footer />
       </Router>
