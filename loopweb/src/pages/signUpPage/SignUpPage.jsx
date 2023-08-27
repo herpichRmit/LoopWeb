@@ -41,30 +41,32 @@ function SignUpPage ({ setIsLoggedIn }) {
 
     return (
 
-        <div>
+        <div className="signUp-container">
             <form onSubmit={handleSubmit}>
-                <div className="field">
-                    <label className="label">Name</label>
-                    <div className="control">
-                        <input className={`input ${errors.name && 'is-danger'}`} type="text" name="name" onChange={handleChange} value={values.name || ''} required />
+                <div className="signUp-display_flex">
+                    <div className="field">
+                        <label className="label">Name</label>
+                        <div className="control">
+                            <input className={`input ${errors.name && 'is-danger'}`} type="text" name="name" onChange={handleChange} value={values.name || ''} required />
+                        </div>
                     </div>
+                    <div className="field">
+                        <label className="label">Email Address</label>
+                        <div className="control">
+                            <input className={`input ${errors.email && 'is-danger'}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="label">Password</label>
+                        <div className="control">
+                            <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
+                        </div>
+                        {errors.password && (
+                            <p className="help is-danger">{errors.password}</p>
+                        )}
+                    </div>
+                    <button type="submit" className="button">Sign up</button>
                 </div>
-                <div className="field">
-                    <label className="label">Email Address</label>
-                    <div className="control">
-                        <input className={`input ${errors.email && 'is-danger'}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
-                    </div>
-                </div>
-                <div className="field">
-                    <label className="label">Password</label>
-                    <div className="control">
-                        <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
-                    </div>
-                    {errors.password && (
-                        <p className="help is-danger">{errors.password}</p>
-                    )}
-              </div>
-              <button type="submit" className="button">Login</button>
             </form>
         </div>
     );

@@ -13,7 +13,7 @@
 }
 
 .movieContent-container_space img {
-    width: 1440px; 
+    width: 100vw; 
     height: 200px; 
     object-fit: cover;
 }
