@@ -17,20 +17,20 @@
         "reviews" : [
             {
                 "title" : "Test 1",
-                "name" : "John Smith",
-                "review" : "Testing testing",
+                "reviewer" : "John Smith",
+                "desc" : "Testing testing",
                 "rating" : 2
             },
             {
                 "title" : "Test 2",
-                "name" : "Jane Doe",
-                "review" : "Testing",
+                "reviewer" : "Jane Doe",
+                "desc" : "Testing",
                 "rating" : 3
             },
             {
                 "title" : " Test 3",
-                "name" : "Ethan Herpich",
-                "review" : "Testing testing testing ... testing",
+                "reviewer" : "Ethan Herpich",
+                "desc" : "Testing testing testing ... testing",
                 "rating" : 5
             }
         ]
@@ -54,20 +54,20 @@
         "reviews" : [
             {
                 "title" : "Test 1",
-                "name" : "John Smith",
-                "review" : "Testing testing",
+                "reviewer" : "John Smith",
+                "desc" : "Testing testing",
                 "rating" : 2
             },
             {
                 "title" : "Test 2",
-                "name" : "Jane Doe",
-                "review" : "Testing",
+                "reviewer" : "Jane Doe",
+                "desc" : "Testing",
                 "rating" : 3
             },
             {
                 "title" : " Test 3",
-                "name" : "Ethan Herpich",
-                "review" : "Testing testing testing ... testing",
+                "reviewer" : "Ethan Herpich",
+                "desc" : "Testing testing testing ... testing",
                 "rating" : 5
             }
         ]
@@ -90,20 +90,20 @@
         "reviews" : [
             {
                 "title" : "Test 1",
-                "name" : "John Smith",
-                "review" : "Testing testing",
+                "reviewer" : "John Smith",
+                "desc" : "Testing testing",
                 "rating" : 2
             },
             {
                 "title" : "Test 2",
-                "name" : "Jane Doe",
-                "review" : "Testing",
+                "reviewer" : "Jane Doe",
+                "desc" : "Testing",
                 "rating" : 3
             },
             {
                 "title" : " Test 3",
-                "name" : "Ethan Herpich",
-                "review" : "Testing testing testing ... testing",
+                "reviewer" : "Ethan Herpich",
+                "desc" : "Testing testing testing ... testing",
                 "rating" : 5
             }
         ]

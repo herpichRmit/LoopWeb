@@ -20,6 +20,14 @@ function ReviewCard (props) {
                     <div className="reviewCard-container_box-review">
                         <p>{props.desc}</p>
                     </div>
+                    {props.edit && 
+                        <div className="reviewCard-container_box-review">
+                            <button onClick={() => {
+                                props.setIsOpen(true);
+                                props.editReview(props.review)
+                            }} >Edit</button>
+                        </div>
+                    }
                     
                 </div>
             </div>
