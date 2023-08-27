@@ -1,10 +1,12 @@
 # s3935413_s3943923
 
 
+Ethan Herpich - s3935413
+Liam Keenan - s3943923
+
+
 
 References:
-
-Author's family name Initial or Organisation's Name (Year) Title of webpage, Name of Website website, accessed Day Month Year. URL
 
 IMDb (2023) Barbie Poster [Image], IMDb website, accessed 26 August 2023. https://www.imdb.com/title/tt1517268/
 
