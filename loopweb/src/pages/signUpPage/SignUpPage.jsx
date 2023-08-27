@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 // import { useParams } from "react-router-dom";
 
-function SignUpPage () {
+function SignUpPage ({ setIsLoggedIn }) {
 
     const navigate = useNavigate();
 
@@ -18,12 +18,11 @@ function SignUpPage () {
         handleSubmit
     } = useForm(signUp, validate);
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     function signUp() {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
         
-        const user = {...values, isLoggedIn: true };
+        const user = values;
 
         localStorage.setItem('currentUser', JSON.stringify(user));
 
