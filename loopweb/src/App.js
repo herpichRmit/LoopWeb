@@ -5,7 +5,7 @@ import { Header, Footer } from './components/common';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LandingPage, MoviePage } from './pages';
 
-// may need to add path="/notes/:noteId"
+
 
 function App() {
   return (

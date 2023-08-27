@@ -2,58 +2,77 @@ import React, { useState } from "react";
 import ReactModal from 'react-modal';
 import './Reviews.css';
 import { ReviewCard } from '../moviePage' ;
-import { TextField } from "@mui/material";
-import { v4 as uuidv4 } from 'uuid';
 import AddReviewForm from "./ReviewForm";
 import EditReviewForm from "./ReviewEditForm";
 
 function Reviews (props) {
+
+    // track modal settings, i.e. when it is open and what modal is shown
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false)
     
+    // username is used to allow user to edit there reviews
+    const username = "John Doe" // TODO: change to whoever logs in
 
-    const initialFormState = { title: '', reviewer: 'John Smith', desc: '', rating: 0}
+    // set initialFormState, used to set the current review so that current review can be edited
+    const initialFormState = {id: null, title: '', reviewer: username, desc: '', rating: 0}
     const [currentReview, setCurrentReview] = useState(initialFormState)
 
-
+    // access reviews state value, used in other functions
     const [reviews, setReviews] = useState(props.reviews)
 
+    // adds new review to existing reviews object
     const sumbitReview = (review) => {
+        review.id = reviews + 1
         setReviews([...reviews, review])
-        console.log("success")
-        console.log(reviews)
     }
 
-    const deleteReview = (title) => {
-        setReviews(reviews.filter((review) => review.title !== title))
-        console.log("deleting")
-        console.log(reviews)
+    // searchs for a review by ID then removes it from reviews object
+    const deleteReview = (id) => {
+        setReviews(reviews.filter((review) => review.id !== id))
     }
 
-
+    // sets a review to current review, in order for existing values to be based into edit modal screen
     const editReview = (review) => {
     setEditing(true)
     
-    setCurrentReview({ title: review.title, reviewer: review.reviewer, desc: review.desc, rating: review.rating})
+    setCurrentReview({id: review.id, title: review.title, reviewer: review.reviewer, desc: review.desc, rating: review.rating})
     }
 
-
-    const updateReview = (title, updatedReview) => {
+    // search and update review details by its ID number
+    const updateReview = (id, updatedReview) => {
         setEditing(false)
       
-        setReviews(reviews.map((review) => (review.title === title ? updatedReview : review)))
+        setReviews(reviews.map((review) => (review.id === id ? updatedReview : review)))
       }
 
-    
-    const cards = reviews.map(review => {
-        let userEdit = false;
 
-        if (review.reviewer == "John Smith"){
+    // update the avgReview state value
+    const [avgReview, setAvgReview] = useState();
+
+    // function to determine the average rating
+    const findAvgReview = () => {
+        let sum = 0
+        let num = reviews.length
+
+        for (let i=0; i<num; i++) {
+            console.log(reviews[i].rating)
+            sum += reviews[i].rating
+        }
+        let result = sum/num
+        setAvgReview(parseFloat(result.toFixed(1)))
+    }
+
+    // maps review object to review cards
+    const cards = reviews.map(review => {
+
+        // checks if this review is the user, if so enables an edit button to be visible
+        let userEdit = false;
+        if (review.reviewer == username){
             userEdit = true;
         }
 
         return <ReviewCard 
-            //parentFunction={setData}
             headline={review.title} 
             author={review.reviewer} 
             desc={review.desc} 
@@ -65,8 +84,6 @@ function Reviews (props) {
         />
     })
 
-    // cards should have a button that setsIsOpen to true (like 76) and also turns editing on
-
     return (
         <>
             <div className="reviews-container">
@@ -74,6 +91,15 @@ function Reviews (props) {
                     <div className="reviews-container_box-row">
                         <div className="reviews-container_box-row_title">
                             <h2>Reviews</h2>
+                        </div>
+                        <div className="reviews-container_box-row_rating">
+                            <h3>Average rating:</h3>
+                            <h3>{avgReview}</h3>
+                            <h3>/10</h3>
+                            
+                        </div>
+                        <div>
+                            <button onClick={findAvgReview}>Calculate</button>
                         </div>
                         <div className="screeningTimes-container_box-row_button">
                             <button onClick={() => setIsOpen(true)}>Add review</button>
@@ -87,12 +113,15 @@ function Reviews (props) {
                         className="reviewModal"
                         isOpen={isOpen} 
                         contentLabel="Example Modal" 
-                        onRequestClose={() => setIsOpen(false)}
+                        onRequestClose={() => {
+                            setIsOpen(false);
+                            setEditing(false);
+                        }}
                     >
                         {editing ? (
-                             <EditReviewForm setEditing={setEditing} currentReview={currentReview} updateReview={updateReview} setIsOpen={setIsOpen} />
+                             <EditReviewForm setEditing={setEditing} currentReview={currentReview} deleteReview={deleteReview} editReview={editReview} updateReview={updateReview} setIsOpen={setIsOpen} />
                         ) : (
-                            <AddReviewForm submitReview={sumbitReview} deleteReview={deleteReview} editReview={editReview} setIsOpen={setIsOpen} />
+                            <AddReviewForm submitReview={sumbitReview} setIsOpen={setIsOpen} username={username} />
                         )}
                     </ReactModal>
 

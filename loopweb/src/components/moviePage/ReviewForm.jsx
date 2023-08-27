@@ -1,104 +1,82 @@
 import React, { useState } from 'react'
+import { TextField } from '@mui/material';
+import './ReviewForm.css';
 
 const AddReviewForm = (props) => {
 
-  const initialFormState = { title: '', reviewer: 'John Smith', desc: '', rating: 0}
+  const initialFormState = {id: null, title: '', reviewer: props.username, desc: '', rating: 0}
   const [review, setReview] = useState(initialFormState)
 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
-
-    console.log()
   
     setReview({ ...review, [name]: value })
   }
 
-  /*
-<TextField
-          value={reviewTitle}
-          label="Title"
-          onChange={(e) => {
-              setTitle(e.target.value);
-          }}
-      />
-      <TextField
-          value={reviewRating}
-          label="Rating"
-          onChange={(e) => {
-              setRating(e.target.value);
-          }}
-      />
-      <TextField
-          value={reviewDesc}
-          label="Review"
-          onChange={(e) => {
-              setReview(e.target.value);
-          }}
-          multiline
-          rows={4}
-      />
-      <div className="reviewModal-button">
-          <button onClick={() => setIsOpen(false)}>Close</button>
-          <button onClick={() => {
-              sumbitReview();
-          }}>Add</button>
-      </div>
-
-  */
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
 
-        console.log("submitted")
-        console.log(review)
+          console.log("submitted")
+          console.log(review)
 
-        if (!review.title || !review.desc) return
-        
-        props.submitReview(review)
-        setReview(initialFormState)
-        props.setIsOpen(false)
-      }}
-    >
-      <label>Title</label>
-      <input
-        type="text"
-        name="title"
-        value={review.title}
-        onChange={handleInputChange}
-      />
-      <label>Reviewer</label>
-      <input
-        type="text"
-        name="reviewer"
-        value={review.reviewer}
-        onChange={handleInputChange}
-      />
-      <label>Desc</label>
-      <input
-        type="text"
-        name="desc"
-        value={review.desc}
-        onChange={handleInputChange}
-      />
-      <label>Rating</label>
-      <input
-        type="text"
-        name="rating"
-        value={review.rating}
-        onChange={handleInputChange}
-      />
-      
-      <button onClick={() => props.setIsOpen(false)}>Cancel</button>
-      <button type="submit">Add new user</button>
+          if (!review.title || !review.desc) return
+          
+          props.submitReview(review)
+          setReview(initialFormState)
+          props.setIsOpen(false)
+        }}
+      >
+        <div className="modal-form">
+          <h2>Add Review</h2>
+          <TextField
+              required
+              label="Title"
+              type="text"
+              name="title"
+              value={review.title}
+              onChange={handleInputChange}
+          />
+          <TextField
+              disabled
+              label="Reviewer"
+              type="text"
+              name="reviewer"
+              value={review.reviewer}
+              onChange={handleInputChange}
+          />
+          <TextField
+              label="Rating out of 5"
+              type="number"
+              name="rating"
+              value={review.rating}
+              InputLabelProps={{
+                shrink: true,
+                inputProps: { min: 0, max: 5 } 
+              }}
+              onChange={handleInputChange}
+          />
+          <TextField
+              required
+              label="Review"
+              type="text"
+              name="desc"
+              value={review.desc}
+              onChange={handleInputChange}
+              multiline
+              rows={4}
+          />
 
-  </form>
+          <div className="buttonRow">
+            <button onClick={() => props.setIsOpen(false)}>Cancel</button>
+            <button type="submit">Add new review</button>
+          </div>
+        </div>
+    </form>
   )
-  // <button onClick={() => props.deleteReview(review.title)}>Delete</button>
-  // <button type="button" onClick={props.setIsOpen}> save</button>
-  // <button onClick={() => props.editReview(review)}>Edit</button>
 }
 
 export default AddReviewForm
