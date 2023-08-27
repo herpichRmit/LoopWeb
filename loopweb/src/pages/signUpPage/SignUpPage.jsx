@@ -22,9 +22,15 @@ function SignUpPage ({ setIsLoggedIn }) {
     function signUp() {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
         
-        const user = values;
 
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        const currentDate = new Date();
+
+        const newUser = { ...values, createdAt: currentDate.toISOString() };
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+        
+
+        //localStorage.setItem('currentUser', JSON.stringify(user));
 
         setIsLoggedIn(true);
 

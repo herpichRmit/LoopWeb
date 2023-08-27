@@ -7,6 +7,8 @@ function Header({ isLoggedIn }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const currUser = JSON.parse(localStorage.getItem('currentUser'))
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -30,7 +32,12 @@ function Header({ isLoggedIn }) {
                     </div>
                     <div className="header-container_navigationActions">
                         {isLoggedIn ? (
-                            <NavLink to="/signIn" className="button_alternative">Edit Account</NavLink>
+                            <div>
+                                <button onClick={handleOpenModal}>
+                                    Edit Account
+                                </button>
+                                <EditAccountModal user={currUser} isOpen={isModalOpen} onClose={handleClosedModal} />
+                            </div>
                         ) : (
                             <div>
                                 <NavLink to="/signIn" className="button_alternative">Sign In</NavLink>
