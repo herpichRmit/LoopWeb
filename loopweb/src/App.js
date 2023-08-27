@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Header, Footer } from './components/common';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { LandingPage, MoviePage, SignInPage, SignUpPage } from './pages';
+import { LandingPage, MoviePage, SignInPage, SignUpPage, EditPage } from './pages';
 
 
 
@@ -27,6 +27,7 @@ function App() {
           <Route path="/movies/:movieTitle" element={<MoviePage />} />
           <Route path="/SignIn" element={<SignInPage setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/SignUp" element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/edit" element={<EditPage setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
         <Footer />
       </Router>

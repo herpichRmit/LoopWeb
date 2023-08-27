@@ -2,7 +2,7 @@
 
 
 img {
-    width: 1440px; 
+    width: 100vw; 
     height: 540px; 
     object-fit: cover;
 }
