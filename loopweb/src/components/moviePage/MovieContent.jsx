@@ -4,6 +4,7 @@ import './MovieContent.css';
 
 function MovieContent (props) {
 
+    // No calculations or state, all props
 
     return (
         <>

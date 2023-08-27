@@ -28,6 +28,11 @@
     align-items: flex-end;
 }
 
+.reviews-container_box-row_rating{
+    display: flex;
+    flex-direction: row;
+}
+
 .screeningTimes-container_box-button{
     display: flex;
     justify-content: flex-start;
@@ -40,4 +45,22 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 25px;
+}
+
+.reviewModal{
+    width: 600px;
+    height: fit-content;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 50px 30px 50px;
+    border-radius: 40px;
+    gap: 10px;
+    line-height: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 5px 6px #1D2939;;
 }

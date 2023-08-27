@@ -8,23 +8,27 @@ import Movies from '../../data/movies.json';
 
 function MoviePage () {
 
+    // determine which movie to show based on what the routing link is
     const { movieTitle } = useParams();
     let selectedMovie = null;
     
-
+    // iterate through all movies to find selected movie
     for (let i=0; i<Movies.length; i++){
         if (Movies[i].title == movieTitle) {
             selectedMovie = Movies[i]
         }
     }
 
-    // check all records for movie tag gotten from titles
+    // make array like object (JSON file) behave like an array
+    const arrReviews = Array.from(selectedMovie.reviews)
 
+    
+    // pass data to three seperate sections
     return (
         <>
             <MovieContent movie={selectedMovie} />
             <ScreeningTimes times={selectedMovie.times} />
-            <Reviews reviews={selectedMovie.reviews} />
+            <Reviews reviews={arrReviews} />
         </>
     )
 }

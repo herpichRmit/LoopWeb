@@ -4,7 +4,10 @@ import './ScreeningTimesCard.css';
 
 function ScreeningTimesCard (props) {
 
+    
+    // make the times prop from an array-like object to an array
     const arrTimes = Array.from(props.time)
+    // map all times to there own text element
     const cards = arrTimes.map(time => {
         return <div className="screeningTimesCard-container_box-row_time-text"><p>{time}</p></div>
     })
