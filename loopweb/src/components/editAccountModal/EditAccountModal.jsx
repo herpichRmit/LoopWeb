@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '@mui/material/Modal';
+import { NavLink } from 'react-router-dom';
 
 const EditAccountModal = ({ user, isOpen, onClose }) => {
 
@@ -20,6 +21,7 @@ const EditAccountModal = ({ user, isOpen, onClose }) => {
                 <p>Name: {user.name}</p>
                 <p>Email: {user.email}</p>
                 <p>Account Created: {user.createdAt}</p>
+                <NavLink to='/edit'><button>Edit details</button></NavLink>
             </div>
         </Modal>
     );

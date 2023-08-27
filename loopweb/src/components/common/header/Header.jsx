@@ -27,7 +27,6 @@ function Header({ isLoggedIn }) {
                         </div>
                         <div className="header-container_content-navigation">
                             <NavLink to="/" exact>Home</NavLink>
-                            <NavLink to="/" exact>Screening Times</NavLink>
                         </div>
                     </div>
                     <div className="header-container_navigationActions">
