@@ -7,6 +7,7 @@ const useForm = (callback, validate) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
+        console.log(Object.keys(errors).length + " " + isSubmitting + " " + 'Errors:', JSON.stringify(errors));
         if (Object.keys(errors).length === 0 && isSubmitting) {
             callback();
         }
@@ -22,6 +23,7 @@ const useForm = (callback, validate) => {
     const handleChange = (event) => {
         event.persist();
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+
     };
 
     return {

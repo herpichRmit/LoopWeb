@@ -2,7 +2,7 @@
     {
         "name": "John Doe",
         "email": "john@example.com",
-        "password": "pass",
+        "password": "password",
         "created": "1 Jan 2023"
     },
     {

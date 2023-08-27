@@ -2,7 +2,7 @@ import React from "react";
 import './Header.css';
 import { NavLink } from "react-router-dom";
 
-function Header () {
+function Header({ isLoggedIn }) {
     return (
         <>
             <div className="header">
@@ -17,10 +17,16 @@ function Header () {
                         </div>
                     </div>
                     <div className="header-container_navigationActions">
-                        <NavLink to="/signIn" className="button_alternative">Sign In</NavLink>
-                        {/*<button className="button_alternative">Sign in</button>
-                        <button>Sign up</button> */}
-                        <NavLink to="/signUp" className="button">Sign Up</NavLink>
+                        {isLoggedIn ? (
+                            <NavLink to="/signIn" className="button_alternative">Edit Account</NavLink>
+                        ) : (
+                            <div>
+                                <NavLink to="/signIn" className="button_alternative">Sign In</NavLink>
+                                <NavLink to="/signUp">
+                                    <button>Sign Up</button>
+                                </NavLink>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
