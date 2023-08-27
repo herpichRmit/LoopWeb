@@ -2,10 +2,12 @@ export default function validate(values) {
   let errors = {};
 
   // add validation for name
+  
 
-  if (!values.name) {
-    errors.name = 'Name is required';
-  }
+  // Need to figure out a way so that this is only called on register, not login or there will be an error
+  // if (!values.name) {
+  //   errors.name = 'Name is required';
+  // }
   if (!values.email) {
     errors.email = 'Email address is required';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {

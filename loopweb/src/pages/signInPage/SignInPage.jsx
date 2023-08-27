@@ -1,11 +1,14 @@
-import React from "react";
+//import React from "react";
+import React, { useState } from "react";
 import './SignInPage.css';
 import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
+import userData from '../../data/users.json';
+import { useNavigate } from 'react-router-dom';
 
 // import { useParams } from "react-router-dom";
 
-function SignInPage () {
+function SignInPage ({ setIsLoggedIn }) {
 
     const {
         values,
@@ -14,17 +17,30 @@ function SignInPage () {
         handleSubmit
     } = useForm(signIn, validate);
 
+    const navigate = useNavigate();
+
     function signIn() {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
 
-        const user = {...values, isLoggedIn: true };
+        //const user = {...values, isLoggedIn: true };
 
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.getItem(JSON.parse('currentUser'));
+        //localStorage.setItem('currentUser', JSON.stringify(user));
 
+        const currUser = JSON.parse(localStorage.getItem('currentUser'));
+        const { email, password } = values;
 
+        const userFound = userData.find(user => user.email === email && user.password === password); // found in user.json file
+        const currUserFound = currUser && currUser.email === email && currUser.password === password; // found in local storage
+
+        if (currUserFound || userFound) {
+            setIsLoggedIn(true);
+
+            if (userFound) {
+                localStorage.setItem('isLoggedIn', 'true');
+            }
+        }
         
-        setIsRegistered(true);
+        
 
         navigate('/');
 
