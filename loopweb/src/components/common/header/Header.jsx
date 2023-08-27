@@ -17,8 +17,10 @@ function Header () {
                         </div>
                     </div>
                     <div className="header-container_navigationActions">
-                        <button className="button_alternative">Sign in</button> 
-                        <button>Sign up</button> 
+                        <NavLink to="/signIn" className="button_alternative">Sign In</NavLink>
+                        {/*<button className="button_alternative">Sign in</button>
+                        <button>Sign up</button> */}
+                        <NavLink to="/signUp" className="button">Sign Up</NavLink>
                     </div>
                 </div>
             </div>

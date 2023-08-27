@@ -1,0 +1,20 @@
+[
+    {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "pass",
+        "created": "1 Jan 2023"
+    },
+    {
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "password": "pass",
+        "created": "28 Jul 2023"
+    },
+    {
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "password": "pass",
+        "created": "30 Jun 2023"
+    }
+]
