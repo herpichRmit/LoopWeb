@@ -8,13 +8,13 @@
     {
         "name": "Jane Smith",
         "email": "jane@example.com",
-        "password": "pass",
+        "password": "password",
         "created": "28 Jul 2023"
     },
     {
         "name": "Alice Johnson",
         "email": "alice@example.com",
-        "password": "pass",
+        "password": "password",
         "created": "30 Jun 2023"
     }
 ]
