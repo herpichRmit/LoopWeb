@@ -1,5 +1,5 @@
 module.exports = (express, app) => {
-  const controller = require("../controllers/user.controller.js");
+  const controller = require("../controllers/review.controller.js");
   const router = express.Router();
 
   // Select all users.
@@ -7,9 +7,6 @@ module.exports = (express, app) => {
 
   // Select a single user with id.
   router.get("/select/:id", controller.one);
-
-  // Select one user from the databse if username and password are a match.
-  router.get("/login", controller.login)
 
   // Create a new user.
   router.post("/", controller.create);
@@ -20,9 +17,6 @@ module.exports = (express, app) => {
   // Delete a user with id.
   router.delete("/:id", controller.remove);
 
-  // Select a user with id and see all their reviews.
-  router.get("/reviews/:id", controller.getReviewsByUserID);
-
   // Add routes to server.
-  app.use("/api/users", router);
+  app.use("/api/reviews", router);
 };

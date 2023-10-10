@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define("movie", {
     movie_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
     title: {
@@ -33,3 +33,12 @@ module.exports = (sequelize, DataTypes) =>
     // Don't add the timestamp attributes (updatedAt, createdAt).
     timestamps: false
   });
+
+
+  /*
+    movie_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    } 
+  */

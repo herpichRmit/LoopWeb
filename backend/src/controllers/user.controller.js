@@ -55,7 +55,6 @@ exports.remove = async (req, res) => {
   return res.json(removed);
 };
 
-
 // Remove a user from the database.
 exports.login = async (req, res) => {
   const id = req.params.id;
@@ -68,4 +67,13 @@ exports.login = async (req, res) => {
   }
 
   return res.json(removed);
+};
+
+// Select a user, and their reviews from the database.
+exports.getReviewsByUserID = async (req, res) => {
+  const id = req.params.id;
+
+  const user = await db.user.findByPk(id, { include: ["reviews"] });
+
+  return res.json(user);
 };

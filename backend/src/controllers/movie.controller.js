@@ -2,7 +2,7 @@ const db = require("../database");
 
 // Select all movies from the database.
 exports.all = async (req, res) => {
-  const movies = await db.user.findAll();
+  const movies = await db.movie.findAll();
 
   res.json(movies);
 };
