@@ -9,6 +9,8 @@
 - server.js -*instatiate database*
 
 
+**Run:** npm start
+
 The backend setup is adapted on the resources provided from the week 8 learning lectorial and tutorial.
 
 To see and debug MySQL database, head to the following link and enter details: 
