@@ -17,6 +17,7 @@
     background-color: green;
     height: 375px;
     width: 180px;
+    box-shadow: 0px 5px 25px #808080;
 }
 
 .card-container_content-img {
