@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactModal from 'react-modal';
 import './Reviews.css';
 import { ReviewCard } from '.' ;
 import { TextField } from '@mui/material';
@@ -102,7 +101,7 @@ function Reviews (props) {
     // todo: find better solution
     function refreshPage() {
         window.location.reload(false);
-      }
+    }
     
 
     return (
@@ -117,63 +116,60 @@ function Reviews (props) {
                             <h4>Rating:</h4>
                             <h4>{avgReview}</h4>
                             <h4>/5</h4>
-                            
                         </div>
                         <div className="screeningTimes-container_box-row_button">
                             <button className="button-alt" onClick={() => setIsOpen(true)}>Add review</button>
                         </div>
                     </div>
                     {isOpen ?
-                        <div className="reviews-editor">
-                            <form onSubmit={submitReview} >
-                            <h4>Add review</h4>
-                            <TextField
-                                className="reviews-editor-textf"
-                                required
-                                label="Headline"
-                                type="text"
-                                value={headline}
-                                onChange={handleHeadline}
-                            />
-                            <br></br>
-                            <TextField
-                                className="reviews-editor-textf"
-                                label="Rating out of 5"
-                                type="number"
-                                value={rating}
-                                InputLabelProps={{
-                                    shrink: true,
-                                    inputProps: { min: 0, max: 5 } 
-                                }}
-                                onChange={handleRating}
-                            />
-                            <ReactQuill
-                                className="reviews-editor-box"
-                                value={comment}
-                                onChange={setComment}
-                                modules={{
-                                    toolbar: [
-                                    [{ header: [1, 2, false] }],
-                                    ['bold', 'italic', 'underline']
-                                    ]
-                                }}
-                                theme="snow"
-                            />
-                            {errorMessage !== null &&
-                                <div>
-                                    <span className="text-danger">{errorMessage}</span>
-                                </div>
-                            }
-                            <div className="reviews-editor-buttons">
-                                <button className="button-alt" onClick={submitReview} >Save</button>
-                                <button className="button-alt" onClick={resetReviewContent} >Cancel</button>
+                        <div className="reviews-editor_size">
+                            <div className="reviews-editor">
+                                <form onSubmit={submitReview} >
+                                <h4>Add review</h4>
+                                <TextField
+                                    className="reviews-editor-textf"
+                                    required
+                                    label="Headline"
+                                    type="text"
+                                    value={headline}
+                                    onChange={handleHeadline}
+                                />
+                                <br></br>
+                                <TextField
+                                    className="reviews-editor-textf"
+                                    label="Rating out of 5"
+                                    type="number"
+                                    value={rating}
+                                    onChange={handleRating}
+                                />
+                                <ReactQuill
+                                    className="reviews-editor-box"
+                                    value={comment}
+                                    onChange={setComment}
+                                    modules={{
+                                        toolbar: [
+                                        [{ header: [1, 2, false] }],
+                                        ['bold', 'italic', 'underline']
+                                        ]
+                                    }}
+                                    theme="snow"
+                                />
                                 {errorMessage !== null &&
-                                <div>
-                                    <span className="text-danger">{errorMessage}</span> 
-                                </div>
+                                    <div>
+                                        <span className="text-danger">{errorMessage}</span>
+                                    </div>
                                 }
+                                <div className="reviews-editor-buttons">
+                                    <button className="button-alt" onClick={submitReview} >Save</button>
+                                    <button className="button-alt" onClick={resetReviewContent} >Cancel</button>
+                                    {errorMessage !== null &&
+                                    <div>
+                                        <span className="text-danger">{errorMessage}</span> 
+                                    </div>
+                                    }
+                                </div>
+                                </form>
                             </div>
-                            </form>
                         </div>
                         :
                         <div></div>
@@ -215,21 +211,3 @@ function Reviews (props) {
 }
 
 export default Reviews;
-
-/*
-<ReactModal 
-    className="reviewModal"
-    isOpen={isOpen} 
-    contentLabel="Example Modal" 
-    onRequestClose={() => {
-        setIsOpen(false);
-        setEditing(false);
-    }}
->
-    {editing ? (
-            <EditReviewForm setEditing={setEditing} currentReview={currentReview} deleteReview={deleteReview} editReview={editReview} updateReview={updateReview} setIsOpen={setIsOpen} />
-    ) : (
-        <AddReviewForm submitReview={sumbitReview} setIsOpen={setIsOpen} username={username} />
-    )}
-</ReactModal>
-                    */

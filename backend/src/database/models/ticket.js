@@ -1,8 +1,10 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define("ticket", {
-    status: {
-      type: DataTypes.STRING(10),
-      allowNull: true
+    ticket_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false
     }
   }, {
     // Don't add the timestamp attributes (updatedAt, createdAt).

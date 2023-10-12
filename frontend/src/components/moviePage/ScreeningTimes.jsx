@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import './ScreeningTimes.css';
-import { ScreeningTimesCard } from '.' ;
+import { SessionTimeButton } from '.' ;
 import moment from 'moment';
 
 import { getMovie } from "../../data/repository";
+import ReactModal from "react-modal";
 
 function ScreeningTimes(props) {
 
     // iterate though sessions, group all sessions that have the same cinema_name
     const groupedSessions = groupSessionsByCinemaName(props.times || []);
     
-    // if someone clicks to reserve ticket, call an updateSession function
-
 
     // create each row of session times
     function getCards() {
@@ -22,7 +21,7 @@ function ScreeningTimes(props) {
                 <div className="st-container_box-flexGrid-entry" key={cinema}>
                     <p className="st-container_box-flexGrid-entry-title">{cinema}</p>
                     {groupedSessions[cinema].map(session => (
-                        <p className="stc-text" key={session.session_id}>{moment(session.session_time).format('MMMM Do, h:mma')}</p>
+                        <SessionTimeButton className="st-session-time-buttons" key={session.session_id} session={session} >{moment(session.session_time).format('MMMM Do, h:mma')}</SessionTimeButton>
                     ))}
                 </div>
             );

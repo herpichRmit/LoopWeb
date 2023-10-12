@@ -19,12 +19,13 @@ exports.one = async (req, res) => {
 // Create a ticket in the database.
 exports.create = async (req, res) => {
   const ticket = await db.ticket.create({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName
+    session_id: req.body.session_id,
+    user_email: req.body.user_email
   });
 
   return res.json(ticket);
 };
+
 
 // Update a ticket in the database.
 exports.update = async (req, res) => {

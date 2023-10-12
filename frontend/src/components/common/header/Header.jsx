@@ -32,15 +32,15 @@ function Header({ isLoggedIn }) {
                     <div className="header-container_navigationActions">
                         {isLoggedIn ? (
                             <div>
-                                <button className="button-alt" onClick={handleOpenModal}>
+                                <button onClick={handleOpenModal}>
                                     Edit Account
                                 </button>
                                 <EditAccountModal user={currUser} isOpen={isModalOpen} onClose={handleClosedModal} />
                             </div>
                         ) : (
                             <div>
-                                <NavLink to="/signIn" className="button-alt button-black">Sign In</NavLink>
-                                <NavLink to="/signUp" className="button-alt">Sign Up</NavLink>
+                                <NavLink to="/signIn" className="button-black">Sign In</NavLink>
+                                <NavLink to="/signUp" >Sign Up</NavLink>
                             </div>
                         )}
                     </div>

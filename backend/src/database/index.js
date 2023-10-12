@@ -20,19 +20,27 @@ db.ticket = require("./models/ticket.js")(db.sequelize, DataTypes);
 
 // Relate user and review. One user has many reviews
 db.user.hasMany(db.review, { foreignKey: "user_email" })
-db.review.belongsTo(db.user, { foreignKey: "user_email" }) //, allowNull: true 
+db.review.belongsTo(db.user, { foreignKey: "user_email" }) 
 
 // Relate movie and review. One movie has many reviews
 db.movie.hasMany(db.review, { foreignKey: "movie_id" }) 
-db.review.belongsTo(db.movie, { foreignKey: "movie_id" }) //, allowNull: false 
+db.review.belongsTo(db.movie, { foreignKey: "movie_id" }) 
 
 // Relate movie and session. One movie has many sessions
 db.movie.hasMany(db.session, { foreignKey: "movie_id" }) 
-db.session.belongsTo(db.movie, { foreignKey: "movie_id" }) //, allowNull: false 
+db.session.belongsTo(db.movie, { foreignKey: "movie_id" }) 
 
 // Relate session and user through tickets join table. Many sessions have many users
-db.session.belongsToMany(db.user, { through: db.ticket, foreignKey: "session_id" });
-db.user.belongsToMany(db.session, { through: db.ticket, foreignKey: "user_email" });
+// db.session.belongsToMany(db.user, { through: db.ticket, foreignKey: "session_id" });
+// db.user.belongsToMany(db.session, { through: db.ticket, foreignKey: "user_email" });
+
+// Relate session and ticket. One session has many tickets
+db.session.hasMany(db.ticket, { foreignKey: "session_id" }) 
+db.ticket.belongsTo(db.session, { foreignKey: "session_id" }) 
+
+// Relate user and ticket. One user has many tickets
+db.user.hasMany(db.ticket, { foreignKey: "user_email" }) 
+db.ticket.belongsTo(db.user, { foreignKey: "user_email" }) 
 
 // Include a sync option with seed data logic included.
 db.sync = async () => {
@@ -73,7 +81,8 @@ async function seedData() {
   await db.session.create({ cinema_name: "HOYTS", session_time: "2023-10-01 09:00:00", session_capacity: 10, movie_id: 1 })
 
   // tickets
-  await db.ticket.create({ status: "test", session_id: 1, user_email: "test@gmail.com" })
+  await db.ticket.create({ session_id: 1, user_email: "test@gmail.com" })
+  await db.ticket.create({ session_id: 1, user_email: "test@gmail.com" })
 
 }
 

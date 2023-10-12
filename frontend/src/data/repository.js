@@ -68,6 +68,20 @@ async function removeReview(id) {
   return response.data;
 }
 
+// --- Session ------------------------------------------------------------------------------------
+async function updateSession(id, session) {
+  const response = await axios.put(API_HOST + `/api/sessions/${id}`, session);
+
+  return response.data;
+}
+
+// --- Ticket -------------------------------------------------------------------------------------
+async function createTicket(ticket) {
+  const response = await axios.post(API_HOST + "/api/tickets", ticket);
+
+  return response.data;
+}
+
 // --- Helper functions to interact with local storage --------------------------------------------
 function setUser(user) {
   localStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -85,5 +99,7 @@ export {
   verifyUser, findUser, createUser,
   getMovies, getMovie,
   getReviews, createReview, updateReview, removeReview,
-  getUser, removeUser
+  getUser, removeUser,
+  updateSession, 
+  createTicket
 }

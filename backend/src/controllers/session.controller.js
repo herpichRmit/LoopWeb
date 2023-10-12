@@ -33,8 +33,9 @@ exports.update = async (req, res) => {
 
   const session = await db.session.findByPk(id);
 
-  session.first_name = req.body.firstName;
-  session.last_name = req.body.lastName;
+  session.cinema_name = req.body.cinema_name;
+  session.session_time = req.body.session_time;
+  session.session_capacity = req.body.session_capacity;
 
   await session.save();
 

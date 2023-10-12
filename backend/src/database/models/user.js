@@ -25,12 +25,3 @@ module.exports = (sequelize, DataTypes) =>
     // Don't add the timestamp attributes (updatedAt, createdAt).
     timestamps: false
   });
-
-
-  /*
-  user_email: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
-    }
-    */

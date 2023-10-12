@@ -37,6 +37,7 @@ function ReviewCard (props) {
             return;
         } else {
             // Update post.
+            setErrorMessage("");
             const review = { rating: rating, headline: headline, comment: comment, post_date: props.post_date, user_email: props.username, movie_id: movieId };
             console.log(props.review_id)
             await updateReview(props.review_id, review);
@@ -54,6 +55,7 @@ function ReviewCard (props) {
         setRating(props.rating);
         setHeadline(props.headline);
         setIsEditing(false);
+        setErrorMessage("");
     }
 
     const deleteReview = async () => {
@@ -139,6 +141,7 @@ function ReviewCard (props) {
                             <div className="reviewCard-container_box-review">
                                 <div dangerouslySetInnerHTML={{__html: props.comment}}>{}</div>
                             </div>
+                            <br></br>
                             {props.edit && 
                                 <div className="reviewCard-container_box-review">
                                     <button className="button-alt" onClick={() => {setIsEditing(true)}} >Edit</button>
