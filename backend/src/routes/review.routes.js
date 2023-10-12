@@ -2,19 +2,19 @@ module.exports = (express, app) => {
   const controller = require("../controllers/review.controller.js");
   const router = express.Router();
 
-  // Select all users.
+  // Select all reviews.
   router.get("/", controller.all);
 
-  // Select a single user with id.
+  // Select a single review with id.
   router.get("/select/:id", controller.one);
 
-  // Create a new user.
+  // Create a new review.
   router.post("/", controller.create);
 
-  // Update a user with id.
+  // Update a review with id.
   router.put("/:id", controller.update);
 
-  // Delete a user with id.
+  // Delete a review with id.
   router.delete("/:id", controller.remove);
 
   // Add routes to server.

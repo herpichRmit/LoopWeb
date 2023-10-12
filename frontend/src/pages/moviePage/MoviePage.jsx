@@ -1,34 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MovieContent, ScreeningTimes, Reviews } from "../../components/moviePage";
 import './MoviePage.css';
 
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { getMovie } from "../../data/repository";
 
-import Movies from '../../data/movies.json';
+import Movies from '../../data/old/movies.json';
 
 function MoviePage () {
+    const [isLoading, setIsLoading] = useState(true);
+    const [movie, setMovie] = useState([]);
+    const { movieId } = useParams();
 
-    // determine which movie to show based on what the routing link is
-    const { movieTitle } = useParams();
-    let selectedMovie = null;
-    
-    // iterate through all movies to find selected movie
-    for (let i=0; i<Movies.length; i++){
-        if (Movies[i].title == movieTitle) {
-            selectedMovie = Movies[i]
-        }
-    }
+
+    // use useParams to get a movie
+    useEffect(() => {
+        async function loadMovie() {
+
+            
+            const movie = await getMovie(movieId); // get all movies
+            console.log(movie)
+
+            setMovie(movie)
+            setIsLoading(false);
+            }
+
+        loadMovie();
+    }, []);
 
     // make array like object (JSON file) behave like an array
-    const arrReviews = Array.from(selectedMovie.reviews)
+    //const arrReviews = Array.from(selectedMovie.reviews)
 
     
+    console.log("up here")
+    console.log(movie)
+
     // pass data to three seperate sections
     return (
         <>
-            <MovieContent movie={selectedMovie} />
-            <ScreeningTimes times={selectedMovie.times} />
-            <Reviews reviews={arrReviews} />
+            <MovieContent movie={movie} />
+            <ScreeningTimes times={movie.sessions} />
+            <Reviews movieId={movie.movieId} />
         </>
     )
 }

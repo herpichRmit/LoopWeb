@@ -64,8 +64,8 @@ async function seedData() {
   await db.movie.create({ title: "Test movie 2", description: "In 'Test Movie 2,' a scientist delves into a world of cutting-edge technology, pushing the boundaries of reality. As they experiment with mind-bending concepts, they face unforeseen consequences, blurring the line between dreams and existence. This sci-fi thriller challenges the very fabric of our perception.", director : "Ethan Herpich", stars: "Ethan Herpich, Liam Keenan, Leonardo Di Caprico", released : "2023", image : "url here" });
 
   // reviews
-  await db.review.create({ rating: 5, comment: "Great movie well done", post_date: "2023-10-01 00:00:00", user_email: "test@gmail.com", movie_id: 1 })
-  await db.review.create({ rating: 3, comment: "Very good, I even watched it twice", post_date: "2023-12-01 03:00:00", user_email: "test@gmail.com", movie_id: 1 })
+  await db.review.create({ rating: 5, headline: "Great", comment: "Great movie well done", post_date: "2023-10-01 00:00:00", user_email: "test@gmail.com", movie_id: 1 })
+  await db.review.create({ rating: 3, headline: "Great, could watch many times over", comment: "Very good, I even watched it twice", post_date: "2023-12-01 03:00:00", user_email: "test@gmail.com", movie_id: 1 })
   
   // sessions
   await db.session.create({ cinema_name: "Cinema Nova", session_time: "2023-10-01 00:00:00", session_capacity: 10, movie_id: 1 })

@@ -19,8 +19,12 @@ exports.one = async (req, res) => {
 // Create a review in the database.
 exports.create = async (req, res) => {
   const review = await db.review.create({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName
+    rating: req.body.rating,
+    headline: req.body.headline,
+    comment: req.body.comment,
+    post_date: req.body.post_date,
+    user_email: req.body.user_email,
+    movie_id: req.body.movie_id
   });
 
   return res.json(review);
@@ -32,8 +36,12 @@ exports.update = async (req, res) => {
 
   const review = await db.review.findByPk(id);
 
-  review.first_name = req.body.firstName;
-  review.last_name = req.body.lastName;
+  review.rating = req.body.rating;
+  review.headline = req.body.headline;
+  review.comment = req.body.comment;
+  review.post_date = req.body.post_date;
+  review.user_email = req.body.user_email;
+  review.movie_id = req.body.movie_id;
 
   await review.save();
 

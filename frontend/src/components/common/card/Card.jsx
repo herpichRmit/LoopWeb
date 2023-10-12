@@ -17,7 +17,7 @@ function Card (props) {
                         <p>{props.movie.title}</p>
                     </div>
                     {props.buttonActive && <div className="card-container_content-button">
-                        <Link to={`/movies/${props.movie.title}`} activeClassName="active" >
+                        <Link to={`/movies/${props.movie.movie_id}`} activeClassName="active" >
                             Times & Tickets
                         </Link>
                         </div>}

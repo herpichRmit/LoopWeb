@@ -2,8 +2,8 @@ import React from "react";
 import './LandingPage.css';
 import { MovieRow, TitleStrip } from '../../components/landingPage';
 
-import Movies from '../../data/movies.json'
-import UpcomingMovies from '../../data/upcomingMovies.json'
+import Movies from '../../data/old/movies.json'
+import UpcomingMovies from '../../data/old/upcomingMovies.json'
 
 function LandingPage () {
 

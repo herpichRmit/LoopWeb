@@ -1,53 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from 'react-modal';
 import './Reviews.css';
-import { ReviewCard } from '../moviePage' ;
-import AddReviewForm from "./ReviewForm";
-import EditReviewForm from "./ReviewEditForm";
+import { ReviewCard } from '.' ;
+import { TextField } from '@mui/material';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+
+import { getReviews, createReview, getUser } from "../../data/repository";
+
+import { useParams } from 'react-router-dom';
+import { getMovie } from "../../data/repository";
 
 function Reviews (props) {
-
-    // track modal settings, i.e. when it is open and what modal is shown
     const [isOpen, setIsOpen] = useState(false);
-    const [editing, setEditing] = useState(false)
-    
-    // username is used to allow user to edit there reviews
-    
-    const userObj = JSON.parse((localStorage.getItem('currentUser')));
-    const username = userObj.name // TODO: change to whoever logs in userObj.name
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [reviews, setReviews] = useState([]);
 
-    // set initialFormState, used to set the current review so that current review can be edited
-    const initialFormState = {id: null, title: '', reviewer: username, desc: '', rating: 0}
-    const [currentReview, setCurrentReview] = useState(initialFormState)
+    const [isLoading, setIsLoading] = useState(true);
+    const [movie, setMovie] = useState([]);
 
-    // access reviews state value, used in other functions
-    const [reviews, setReviews] = useState(props.reviews)
+    const [comment, setComment] = useState([]);
+    const [rating, setRating] = useState(0);
+    const [headline, setHeadline] = useState("");
 
-    // adds new review to existing reviews object
-    const sumbitReview = (review) => {
-        review.id = reviews + 1
-        setReviews([...reviews, review])
+    const { movieId } = useParams();
+
+    function handleHeadline(e) {
+        setHeadline(e.target.value)
     }
 
-    // searchs for a review by ID then removes it from reviews object
-    const deleteReview = (id) => {
-        setReviews(reviews.filter((review) => review.id !== id))
+    function handleRating(e) {
+        setRating(e.target.value)
     }
 
-    // sets a review to current review, in order for existing values to be based into edit modal screen
-    const editReview = (review) => {
-    setEditing(true)
-    
-    setCurrentReview({id: review.id, title: review.title, reviewer: review.reviewer, desc: review.desc, rating: review.rating})
-    }
+    // use useParams to get a movie
+    useEffect(() => {
+        async function loadMovie() {
+            
+            const movie = await getMovie(movieId); // get all movies // Todo: change to get reviews
 
-    // search and update review details by its ID number
-    const updateReview = (id, updatedReview) => {
-        setEditing(false)
-      
-        setReviews(reviews.map((review) => (review.id === id ? updatedReview : review)))
+            setMovie(movie)
+            console.log(movie.reviews)
+            setReviews(movie.reviews)
+
+            setIsLoading(false);
+            }
+
+        loadMovie();
+        findAvgReview()
+    }, []);
+
+    // gets current user from local host 
+    const username = "test@gmail.com" //userObj.name // TODO: change to whoever logs in userObj.name
+
+    // create review
+    const resetReviewContent = () => {
+        setComment("");
+        setRating(0);
+        setHeadline("");
+        setErrorMessage(null);
+        setIsOpen(false)
       }
+    
+    const submitReview = async (event) => {
+        event.preventDefault();
 
+        // As React Quill uses HTML tags within the text the empty check first removes all HTML elements using a regex.
+        if(comment.replace(/<(.|\n)*?>/g, "").trim().length === 0) {
+            setErrorMessage("A post cannot be empty.");
+            return;
+        } else {
+            // Create post.
+            const newReview = { rating: rating, headline: headline, comment: comment, post_date: new Date(), user_email: username, movie_id: movieId };
+            await createReview(newReview);
+
+            // Add post to locally stored posts.
+            setReviews([...reviews, newReview]);
+
+            resetReviewContent();
+            refreshPage();
+        }
+    };
 
     // update the avgReview state value
     const [avgReview, setAvgReview] = useState();
@@ -66,29 +99,14 @@ function Reviews (props) {
         setAvgReview(parseFloat(result.toFixed(1)))
     }
 
-    // maps review object to review cards
-    const cards = reviews.map(review => {
-
-        // checks if this review is the user, if so enables an edit button to be visible
-        let userEdit = false;
-        if (review.reviewer == username){
-            userEdit = true;
-        }
-
-        return <ReviewCard 
-            headline={review.title} 
-            author={review.reviewer} 
-            desc={review.desc} 
-            rating={review.rating} 
-            edit={userEdit}
-            review={review}
-            editReview={editReview}
-            setIsOpen={setIsOpen}
-        />
-    })
+    // todo: find better solution
+    function refreshPage() {
+        window.location.reload(false);
+      }
+    
 
     return (
-        <>
+        <>  
             <div className="reviews-container">
                 <div className="reviews-container_box">
                     <div className="reviews-container_box-row">
@@ -96,37 +114,99 @@ function Reviews (props) {
                             <h2>Reviews</h2>
                         </div>
                         <div className="reviews-container_box-row_rating">
-                            <h3>Average rating:</h3>
-                            <h3>{avgReview}</h3>
-                            <h3>/10</h3>
+                            <h4>Rating:</h4>
+                            <h4>{avgReview}</h4>
+                            <h4>/5</h4>
                             
                         </div>
-                        <div>
-                            <button onClick={findAvgReview}>Calculate</button>
-                        </div>
                         <div className="screeningTimes-container_box-row_button">
-                            <button onClick={() => setIsOpen(true)}>Add review</button>
+                            <button className="button-alt" onClick={() => setIsOpen(true)}>Add review</button>
                         </div>
                     </div>
-                    <div className="reviews-container_box-flexGrid">
-                        {cards}
-                    </div>
+                    {isOpen ?
+                        <div className="reviews-editor">
+                            <form onSubmit={submitReview} >
+                            <h4>Add review</h4>
+                            <TextField
+                                className="reviews-editor-textf"
+                                required
+                                label="Headline"
+                                type="text"
+                                value={headline}
+                                onChange={handleHeadline}
+                            />
+                            <br></br>
+                            <TextField
+                                className="reviews-editor-textf"
+                                label="Rating out of 5"
+                                type="number"
+                                value={rating}
+                                InputLabelProps={{
+                                    shrink: true,
+                                    inputProps: { min: 0, max: 5 } 
+                                }}
+                                onChange={handleRating}
+                            />
+                            <ReactQuill
+                                className="reviews-editor-box"
+                                value={comment}
+                                onChange={setComment}
+                                modules={{
+                                    toolbar: [
+                                    [{ header: [1, 2, false] }],
+                                    ['bold', 'italic', 'underline']
+                                    ]
+                                }}
+                                theme="snow"
+                            />
+                            {errorMessage !== null &&
+                                <div>
+                                    <span className="text-danger">{errorMessage}</span>
+                                </div>
+                            }
+                            <div className="reviews-editor-buttons">
+                                <button className="button-alt" onClick={submitReview} >Save</button>
+                                <button className="button-alt" onClick={resetReviewContent} >Cancel</button>
+                                {errorMessage !== null &&
+                                <div>
+                                    <span className="text-danger">{errorMessage}</span> 
+                                </div>
+                                }
+                            </div>
+                            </form>
+                        </div>
+                        :
+                        <div></div>
+                    }
+                    {isLoading ? 
+                        <div>Loading reviews</div>
+                        :
+                        <div className="reviews-container_box-flexGrid">{
+                            reviews.map(review => {
+                                // checks if this review is the user, if so enables an edit button to be visible
+                                let userEdit = false;
+                                if (review.user_email == username){
+                                    userEdit = true;
+                                }
 
-                    <ReactModal 
-                        className="reviewModal"
-                        isOpen={isOpen} 
-                        contentLabel="Example Modal" 
-                        onRequestClose={() => {
-                            setIsOpen(false);
-                            setEditing(false);
-                        }}
-                    >
-                        {editing ? (
-                             <EditReviewForm setEditing={setEditing} currentReview={currentReview} deleteReview={deleteReview} editReview={editReview} updateReview={updateReview} setIsOpen={setIsOpen} />
-                        ) : (
-                            <AddReviewForm submitReview={sumbitReview} setIsOpen={setIsOpen} username={username} />
-                        )}
-                    </ReactModal>
+
+                        
+                                return <ReviewCard 
+                                    review_id={review.review_id}
+                                    headline={review.headline} 
+                                    firstName={review.user != null ? review.user.first_name : "" } 
+                                    lastName={review.user != null ? review.user.last_name : "" } 
+                                    comment={review.comment} 
+                                    post_date={review.post_date} 
+                                    rating={review.rating} 
+                                    username={username}
+                                    edit={userEdit}
+                                />
+                            })
+                        }</div>
+                    }
+
+                    
 
                 </div>
             </div>
@@ -135,3 +215,21 @@ function Reviews (props) {
 }
 
 export default Reviews;
+
+/*
+<ReactModal 
+    className="reviewModal"
+    isOpen={isOpen} 
+    contentLabel="Example Modal" 
+    onRequestClose={() => {
+        setIsOpen(false);
+        setEditing(false);
+    }}
+>
+    {editing ? (
+            <EditReviewForm setEditing={setEditing} currentReview={currentReview} deleteReview={deleteReview} editReview={editReview} updateReview={updateReview} setIsOpen={setIsOpen} />
+    ) : (
+        <AddReviewForm submitReview={sumbitReview} setIsOpen={setIsOpen} username={username} />
+    )}
+</ReactModal>
+                    */

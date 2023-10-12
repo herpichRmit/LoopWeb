@@ -11,7 +11,7 @@ exports.all = async (req, res) => {
 exports.one = async (req, res) => {
   const id = req.params.id;
 
-  const movie = await db.movie.findByPk(id);
+  const movie = await db.movie.findByPk(id, { include: { all: true, nested: true } });
 
   res.json(movie);
 };

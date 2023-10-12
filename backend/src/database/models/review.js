@@ -9,11 +9,15 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    comment: { // encryption or something?
+    headline: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    comment: {
       type: DataTypes.TEXT('long'),
       allowNull: true
     },
-    post_date: { // encryption or something?
+    post_date: {
       type: DataTypes.DATE,
       allowNull: false
     }

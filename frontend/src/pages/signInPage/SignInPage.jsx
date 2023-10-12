@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import './SignInPage.css';
 import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
-import userData from '../../data/users.json';
+import userData from '../../data/old/users.json';
 import { useNavigate } from 'react-router-dom';
+
+// Ethan added ... 
+import { verifyUser } from "../../data/repository";
+// --
 
 // import { useParams } from "react-router-dom";
 
@@ -32,6 +36,11 @@ function SignInPage ({ setIsLoggedIn }) {
         const userFound = userData.find(user => user.email === email && user.password === password); // found in user.json file
         const currUserFound = currUser && currUser.email === email && currUser.password === password; // found in local storage
 
+        // Ethan added ... this async function will call verifyUser which will call backend
+        // See week 8 practical practical code
+        //      const user = await verifyUser(fields.username, fields.password);
+        // --
+
         if (currUserFound || userFound) {
             setIsLoggedIn(true);
 
@@ -39,8 +48,6 @@ function SignInPage ({ setIsLoggedIn }) {
                 localStorage.setItem('isLoggedIn', 'true');
             }
         }
-        
-        
 
         navigate('/');
 
