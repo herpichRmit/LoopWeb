@@ -1,4 +1,5 @@
 const db = require("../database");
+const argon2 = require('argon2');
 
 // Select all users from the database.
 exports.all = async (req, res) => {
@@ -55,18 +56,16 @@ exports.remove = async (req, res) => {
   return res.json(removed);
 };
 
-// Remove a user from the database.
+// Select one user from the database if username and password are a match
 exports.login = async (req, res) => {
-  const id = req.params.id;
+  const user = await db.user.findByPk(req.query.user_email);
 
-  let removed = false;
-
-  const user = await db.user.findByPk(id);
-  if(user !== null) {
-    
-  }
-
-  return res.json(removed);
+  if (
+    user === null ||
+    (await argon2.verify(user.password_hash, req.query.password)) === false
+  )
+    res.json(null);
+  else res.json(user);
 };
 
 // Select a user, and their reviews from the database.
