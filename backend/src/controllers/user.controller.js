@@ -19,9 +19,14 @@ exports.one = async (req, res) => {
 
 // Create a user in the database.
 exports.create = async (req, res) => {
+  const hash = await argon2.hash(req.body.password, {type: argon2.argon2id});
+
   const user = await db.user.create({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName
+    user_email: req.body.user_email,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    password_hash: hash,
+    join_date: req.body.join_date,
   });
 
   return res.json(user);
