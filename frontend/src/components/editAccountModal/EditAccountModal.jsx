@@ -18,10 +18,16 @@ const EditAccountModal = ({ user, isOpen, onClose }) => {
         <Modal open={isOpen} onClose={onClose}>
             <div style={modalStyle} className="modal-content">
                 <h2>User Information</h2>
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
-                <p>Account Created: {user.createdAt}</p>
-                <NavLink to='/edit'><button>Edit details</button></NavLink>
+                {user ? ( // Check if user is defined
+                    <>
+                        <p>Name: {user.first_name}</p>
+                        <p>Email: {user.user_email}</p>
+                        <p>Account Created: {user.join_date}</p>
+                        <NavLink to='/edit'><button>Edit details</button></NavLink>
+                    </>
+                ) : (
+                    <p>No user information available.</p>
+                )}
             </div>
         </Modal>
     );

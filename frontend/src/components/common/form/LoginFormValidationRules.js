@@ -15,7 +15,7 @@ export default function validate(values) {
   }
   if (!values.password) {
     errors.password = 'Password is required';
-  } else if (values.password.length < 8) {
+  } else if (values.password.length < 4) {
     errors.password = 'Password must be 8 or more characters';
   }
   return errors;

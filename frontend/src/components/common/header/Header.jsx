@@ -7,7 +7,7 @@ function Header({ isLoggedIn }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const currUser = JSON.parse(localStorage.getItem('currentUser'))
+    const currUser = JSON.parse(localStorage.getItem('user'))
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
