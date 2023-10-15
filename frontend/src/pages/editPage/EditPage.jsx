@@ -4,7 +4,6 @@ import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
 import { useNavigate } from 'react-router-dom';
 
-import { updateUser } from '../../data/repository';
 
 import { findUser, updateUser } from "../../data/repository"; 
 
@@ -26,26 +25,30 @@ function EditPage ({ setIsLoggedIn }) {
         setCurrentUser(storedUser); // Set 'currentUser' state
     }, []);
 
+    const postUpdateUser = async (event) => {
+        event.preventDefault();
+
+        // get user from local host
+        const userData = JSON.parse(localStorage.getItem('user'))
+
+        // Update post.
+        let newUser = await findUser(userData.user_email)
+        newUser = { user_email: newUser.user_email, first_name: values.firstName, last_name: values.lastName, password_hash: values.password, join_date: newUser.join_date };
+        await updateUser(newUser.user_email, newUser);
+
+        // Update locally
+        localStorage.setItem('user', JSON.stringify(newUser));
+    }
+
     const {
         values,
         errors,
         handleChange,
         handleSubmit
-    } = useForm(editUser, validate);
+    } = useForm(postUpdateUser, validate);
 
 
-    function editUser() {
-        
-        updateUser(currentUser.id, values)
-            .then(updatedUser => {
-                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-                //setFormValues(updatedUser);
-            })
-            .catch(error => {
-                console.error('Error updating user:', error);
-            });
 
-    }
 
 
 
@@ -61,6 +64,17 @@ function EditPage ({ setIsLoggedIn }) {
 
     }
 
+
+    /*
+
+    <div className="field">
+                        <label className="label">Last Name</label>
+                        <div className="control">
+                            <input className={`input ${errors.name && 'is-danger'}`} type="text" name="name" onChange={handleChange} value={values.lastName || ''} required />
+                        </div>
+                    </div>
+
+                    */
     // if (isDeleted) {
     //     // If the user is deleted, you might want to redirect or display a message.
     //     return <div>User has been deleted.</div>;
@@ -75,28 +89,28 @@ function EditPage ({ setIsLoggedIn }) {
             <form onSubmit={handleSubmit}>
                 <div className="editPage-display_flex">
                     <div className="field">
-                        <label className="label">Name</label>
+                        <label className="label">First name</label>
                         <div className="control">
-                            <input className={`input ${errors.name && 'is-danger'}`} type="text" name="name" onChange={handleChange} value={values.name || ''} required />
+                            <input className={`input ${errors.name && 'is-danger'}`} type="text" name="firstName" onChange={handleChange} value={values.firstName || ''} />
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label">Email Address</label>
+                        <label className="label">Last name</label>
                         <div className="control">
-                            <input className={`input ${errors.email && 'is-danger'}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
+                            <input className={`input ${errors.name && 'is-danger'}`} type="text" name="lastName" onChange={handleChange} value={values.lastName || ''} />
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Password</label>
                         <div className="control">
-                            <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
+                            <input className={`input ${errors.password && 'is-danger'}`} type="password" name="password" onChange={handleChange} value={values.password || ''} />
                         </div>
                         {errors.password && (
                             <p className="help is-danger">{errors.password}</p>
                         )}
                     </div>
                     <button onClick={removeUser}>Delete account</button>
-                    <button type="submit" className="button">Sign up</button>
+                    <button type="submit" onClick={postUpdateUser} className="button">Save</button>
                     
                 </div>
             </form>

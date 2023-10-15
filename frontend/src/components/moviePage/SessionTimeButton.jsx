@@ -26,7 +26,10 @@ export default function SessionTimeButton({session, children}) {
     }
 
     // todo: gets current user from local host 
-    const username = "test@gmail.com"
+    const userData = JSON.parse(localStorage.getItem('user'))
+
+    const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
+
 
     const submit = async () => {
         if (tickets > session.session_capacity) {
@@ -40,7 +43,7 @@ export default function SessionTimeButton({session, children}) {
             setCapacity(session.session_capacity - tickets)
             const newSession = { cinema_name: session.cinema_name, session_time: session.session_time, session_capacity: capacity, movie_id: session.movieId };
             await updateSession( session.session_id, newSession );
-            const newTicket = { session_id: session.session_id, user_email: username }
+            const newTicket = { session_id: session.session_id, user_email: userData.user_email }
             for (const x in tickets){
                 await createTicket(newTicket);
             }
@@ -64,7 +67,7 @@ export default function SessionTimeButton({session, children}) {
                 <p>{moment(session.session_time).format('MMMM Do, h:mma')}</p>
                 <p>Number of seats available: {capacity}</p>
                 <p>How many tickets would you like to reserve?</p>
-                {capacity === 0 ? 
+                {capacity === 0 || isLoggedIn == false ? 
                 <div className="stc-row">
                     <TextField
                         disabled

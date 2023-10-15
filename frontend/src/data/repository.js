@@ -42,14 +42,6 @@ async function createUser(user) {
   
 }
 
-export async function updateUser(userId, userData) {
-  try {
-    const response = await axios.put(`${API_HOST}/api/users/${userId}`, userData);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-}
 
 // --- Review -------------------------------------------------------------------------------------
 async function getMovies() {

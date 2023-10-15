@@ -29,6 +29,9 @@ function ReviewCard (props) {
         setRating(e.target.value)
     }
 
+    const userData = JSON.parse(localStorage.getItem('user'))
+    const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
+
     const postUpdateReview = async (event) => {
         event.preventDefault();
         // As React Quill uses HTML tags within the text the empty check first removes all HTML elements using a regex.
@@ -38,7 +41,7 @@ function ReviewCard (props) {
         } else {
             // Update post.
             setErrorMessage("");
-            const review = { rating: rating, headline: headline, comment: comment, post_date: props.post_date, user_email: props.username, movie_id: movieId };
+            const review = { rating: rating, headline: headline, comment: comment, post_date: props.post_date, user_email: userData.user_email, movie_id: movieId };
             console.log(props.review_id)
             await updateReview(props.review_id, review);
 

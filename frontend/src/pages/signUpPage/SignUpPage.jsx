@@ -24,15 +24,14 @@ function SignUpPage ({ setIsLoggedIn }) {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
         const currentDate = new Date();
         
-
         //const newUser = { ...values, createdAt: currentDate.toISOString() };
         //localStorage.setItem('currentUser', JSON.stringify(newUser));
 
         //localStorage.setItem('currentUser', JSON.stringify(user));
         const newUser = {
             user_email: values.email,            // Map to user_email
-            first_name: values.name,            // Map to first_name
-            last_name: '',                      // Map to last_name (you may add this to your form if necessary)
+            first_name: values.firstName,            // Map to first_name
+            last_name: values.lastName,                      // Map to last_name (you may add this to your form if necessary)
             password: values.password,          // This value should not be hashed in your frontend
             join_date: new Date().toISOString(), // Map to join_date
           };
@@ -44,6 +43,8 @@ function SignUpPage ({ setIsLoggedIn }) {
             // Update the state and navigate
             setIsLoggedIn(true);
             navigate('/');
+
+            localStorage.setItem('user', JSON.stringify(newUser))
     
         } catch (error) {
             console.error("Error creating user:", error);
@@ -59,9 +60,15 @@ function SignUpPage ({ setIsLoggedIn }) {
                 <form onSubmit={handleSubmit}>
                     <div className="signUp-display_flex">
                         <div className="field">
-                            <label className="label">Name</label>
+                            <label className="label">First name</label>
                             <div className="control">
-                                <input className={`input ${errors.name && 'is-danger'}`} type="text" name="name" onChange={handleChange} value={values.name || ''} required />
+                                <input className={`input ${errors.name && 'is-danger'}`} type="text" name="firstName" onChange={handleChange} value={values.firstName || ''} required />
+                            </div>
+                        </div>
+                        <div className="field">
+                            <label className="label">Last name</label>
+                            <div className="control">
+                                <input className={`input ${errors.name && 'is-danger'}`} type="text" name="lastName" onChange={handleChange} value={values.lastName || ''} required />
                             </div>
                         </div>
                         <div className="field">

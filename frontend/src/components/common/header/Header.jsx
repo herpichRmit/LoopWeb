@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import './Header.css';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import EditAccountModal from "../../editAccountModal/EditAccountModal";
 
 function Header({ isLoggedIn, setIsLoggedIn }) {
+
+    const navigate = useNavigate();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,8 +22,10 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
     const handleLogout = () => {
 
         localStorage.setItem('isLoggedIn', 'false');
+        localStorage.removeItem("user");
         setIsLoggedIn(false);
         window.location.reload();
+        navigate('/');
     };
 
     useEffect(() => {

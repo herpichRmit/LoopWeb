@@ -16,8 +16,6 @@ function LandingPage () {
             </div>
             <TitleStrip text="Now Showing" />
             <MovieRow movieData={movies} comingSoon={false} />
-            <TitleStrip text="Coming Soon" /> 
-            <MovieRow movieData={upcomingMovies} comingSoon={true} />
         </>
     )
 }

@@ -48,7 +48,7 @@ db.sync = async () => {
   //await db.sequelize.sync();
 
   // Can sync with force if the schema has become out of date - note that syncing with force is a destructive operation.
-  await db.sequelize.sync({ force: true }); // TODO: switch from force to normal sync when moving to build
+  await db.sequelize.sync(); // TODO: switch from force to normal sync when moving to build
   
   await seedData();
 };

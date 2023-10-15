@@ -4,6 +4,7 @@ import { ReviewCard } from '.' ;
 import { TextField } from '@mui/material';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import { useNavigate } from "react-router-dom";
 
 import { getReviews, createReview, getUser } from "../../data/repository";
 
@@ -11,6 +12,8 @@ import { useParams } from 'react-router-dom';
 import { getMovie } from "../../data/repository";
 
 function Reviews (props) {
+
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [reviews, setReviews] = useState([]);
@@ -50,7 +53,14 @@ function Reviews (props) {
     }, []);
 
     // gets current user from local host 
-    const username = "test@gmail.com" //userObj.name // TODO: change to whoever logs in userObj.name
+
+    const userData = JSON.parse(localStorage.getItem('user'))
+
+    const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
+
+    //if (userData == null) {
+
+    //}
 
     // create review
     const resetReviewContent = () => {
@@ -70,7 +80,7 @@ function Reviews (props) {
             return;
         } else {
             // Create post.
-            const newReview = { rating: rating, headline: headline, comment: comment, post_date: new Date(), user_email: username, movie_id: movieId };
+            const newReview = { rating: rating, headline: headline, comment: comment, post_date: new Date(), user_email: userData.user_email, movie_id: movieId };
             await createReview(newReview);
 
             // Add post to locally stored posts.
@@ -118,7 +128,7 @@ function Reviews (props) {
                             <h4>/5</h4>
                         </div>
                         <div className="screeningTimes-container_box-row_button">
-                            <button className="button-alt" onClick={() => setIsOpen(true)}>Add review</button>
+                            {isLoggedIn ? <button className="button-alt" onClick={() => setIsOpen(true)}>Add review</button> : <button style={{ backgroundColor: 'grey', cursor:'default', borderColor: 'grey' }}  className="button-alt" >Add review</button> } 
                         </div>
                     </div>
                     {isOpen ?
@@ -174,6 +184,7 @@ function Reviews (props) {
                         :
                         <div></div>
                     }
+                    
                     {isLoading ? 
                         <div>Loading reviews</div>
                         :
@@ -181,12 +192,15 @@ function Reviews (props) {
                             reviews.map(review => {
                                 // checks if this review is the user, if so enables an edit button to be visible
                                 let userEdit = false;
-                                if (review.user_email == username){
-                                    userEdit = true;
+                                
+                                if (userData != null){
+                                    if (review.user_email == userData.user_email){
+                                        userEdit = true;
+                                    }
                                 }
+                                
 
-
-                        
+                                
                                 return <ReviewCard 
                                     review_id={review.review_id}
                                     headline={review.headline} 
@@ -195,7 +209,6 @@ function Reviews (props) {
                                     comment={review.comment} 
                                     post_date={review.post_date} 
                                     rating={review.rating} 
-                                    username={username}
                                     edit={userEdit}
                                 />
                             })
