@@ -2,8 +2,8 @@ import React from "react";
 import './LandingPage.css';
 import { MovieRow, TitleStrip } from '../../components/landingPage';
 
-import Movies from '../../data/old/movies.json'
-import UpcomingMovies from '../../data/old/upcomingMovies.json'
+import movies from '../../data/old/movies.json'
+import upcomingMovies from '../../data/old/upcomingMovies.json'
 
 function LandingPage () {
 
@@ -15,9 +15,9 @@ function LandingPage () {
                 <p className="header-container_content-logo lp-hero-subtitle"> The show begins when you walk in.</p>
             </div>
             <TitleStrip text="Now Showing" />
-            <MovieRow movieData={Movies} buttonActive={true} />
+            <MovieRow movieData={movies} comingSoon={false} />
             <TitleStrip text="Coming Soon" /> 
-            <MovieRow movieData={UpcomingMovies} />
+            <MovieRow movieData={upcomingMovies} comingSoon={true} />
         </>
     )
 }
