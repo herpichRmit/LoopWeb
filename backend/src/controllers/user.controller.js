@@ -38,8 +38,9 @@ exports.update = async (req, res) => {
 
   const user = await db.user.findByPk(id);
 
-  user.first_name = req.body.firstName;
-  user.last_name = req.body.lastName;
+  user.user_email = req.body.user_email;
+  user.first_name = req.body.first_Name;
+  //user.last_name = req.body.last_Name;
 
   await user.save();
 

@@ -21,7 +21,7 @@ function App() {
 
       
       <Router>
-        <Header isLoggedIn={isLoggedIn}/> 
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/> 
         <Routes>
           <Route path="/" element={<LandingPage />}/>
           <Route path="/movies/:movieId" element={<MoviePage />} />
