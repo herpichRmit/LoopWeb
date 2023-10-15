@@ -3,7 +3,7 @@ import './Header.css';
 import { NavLink } from "react-router-dom";
 import EditAccountModal from "../../editAccountModal/EditAccountModal";
 
-function Header({ isLoggedIn }) {
+function Header({ isLoggedIn, setIsLoggedIn }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,6 +15,11 @@ function Header({ isLoggedIn }) {
 
     const handleClosedModal = () => {
         setIsModalOpen(false);
+    };
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+        window.location.reload();
     };
 
     return (
@@ -34,6 +39,9 @@ function Header({ isLoggedIn }) {
                             <div>
                                 <button onClick={handleOpenModal}>
                                     Edit Account
+                                </button>
+                                <button onClick={handleLogout} className="button-black">
+                                    Logout
                                 </button>
                                 <EditAccountModal user={currUser} isOpen={isModalOpen} onClose={handleClosedModal} />
                             </div>
