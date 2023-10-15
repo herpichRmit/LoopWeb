@@ -25,14 +25,17 @@ function MovieRow (props) {
 
 
     const listCards = movies.map( movieCard => {
-        return <Card movie={movieCard} buttonActive={props.buttonActive} > </Card>
+        return <Card movie={movieCard} buttonActive={!props.comingSoon} > </Card>
     })
-    
+
+    const comingSoon = props.movieData.map( movieCard => {
+        return <Card movie={movieCard} buttonActive={!props.comingSoon} > </Card>
+    })
 
     return (
         <>
             <div className="movieRow-container">
-                {listCards}
+                {comingSoon ? listCards : comingSoon}
             </div>
         </>
     )
