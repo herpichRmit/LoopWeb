@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 // Ethan added ... 
 import { verifyUser } from "../../data/repository";
 import EditAccountModal from "../../components/editAccountModal/EditAccountModal";
+import WelcomeModal from "./WelcomeModal";
 // --
 
 // import { useParams } from "react-router-dom";
@@ -19,6 +20,7 @@ function SignInPage ({ setIsLoggedIn }) {
     const navigate = useNavigate();
     
     const [user, setUser] = useState(null);
+    const [showWelcomeModal, setShowWelcomeModal] = useState(false);
 
     const {
         values,
@@ -46,12 +48,16 @@ function SignInPage ({ setIsLoggedIn }) {
                 setUser(userData);
                 setIsLoggedIn(true);
                 localStorage.setItem('isLoggedIn', 'true');
-                navigate('/');
                 
+                // show welcome modal
+                setShowWelcomeModal(true);
                 
-                //navigate('/', {state: { user }});
+                // navigate to home page after successful login
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
 
-                console.log("User Info:", user)
+                console.log("User Info:", userData)
 
             }
         } catch (error){
@@ -104,6 +110,10 @@ function SignInPage ({ setIsLoggedIn }) {
                         <button type="submit" className="button">Login</button>
                     </div>
                 </form>
+
+                {showWelcomeModal && (
+                <WelcomeModal user={user} isOpen={showWelcomeModal} onClose={() => setShowWelcomeModal(false)}/>
+                )}
             </div>
         </div>
             
