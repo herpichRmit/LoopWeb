@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './EditPage.css';
 import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
 import { useNavigate } from 'react-router-dom';
+
+import { updateUser } from '../../data/repository';
 
 
 // import { useParams } from "react-router-dom";
@@ -10,6 +12,17 @@ import { useNavigate } from 'react-router-dom';
 function EditPage ({ setIsLoggedIn }) {
 
     const navigate = useNavigate();
+    //const [isDeleted, setIsDeleted] = useState(false);
+    //const [formValues, setFormValues] = useState(currentUser);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    
+
+    useEffect(() => {
+        // Retrieve 'currentUser' from local storage when the component mounts
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        setCurrentUser(storedUser); // Set 'currentUser' state
+    }, []);
 
     const {
         values,
@@ -21,14 +34,14 @@ function EditPage ({ setIsLoggedIn }) {
 
     function editUser() {
         
-        const user = values;
-
-        localStorage.removeItem("currentUser");
-        localStorage.setItem('currentUser', JSON.stringify(user));
-
-        setIsLoggedIn(true);
-
-        navigate('/');
+        updateUser(currentUser.id, values)
+            .then(updatedUser => {
+                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                //setFormValues(updatedUser);
+            })
+            .catch(error => {
+                console.error('Error updating user:', error);
+            });
 
     }
 
@@ -43,6 +56,11 @@ function EditPage ({ setIsLoggedIn }) {
         navigate('/');
 
     }
+
+    // if (isDeleted) {
+    //     // If the user is deleted, you might want to redirect or display a message.
+    //     return <div>User has been deleted.</div>;
+    // }
 
     // delete account needs to remove an item from current user
     // turn is logged in off
