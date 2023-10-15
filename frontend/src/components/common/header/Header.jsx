@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Header.css';
 import { NavLink } from "react-router-dom";
 import EditAccountModal from "../../editAccountModal/EditAccountModal";
@@ -18,9 +18,17 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
     };
 
     const handleLogout = () => {
+
+        localStorage.setItem('isLoggedIn', 'false');
         setIsLoggedIn(false);
         window.location.reload();
     };
+
+    useEffect(() => {
+        // Check the isLoggedIn flag in local storage on component load
+        const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        setIsLoggedIn(storedIsLoggedIn);
+    }, []);
 
     return (
         <>
