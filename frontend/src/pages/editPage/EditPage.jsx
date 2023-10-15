@@ -4,6 +4,8 @@ import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
 import { useNavigate } from 'react-router-dom';
 
+import { findUser, updateUser } from "../../data/repository"; 
+
 
 // import { useParams } from "react-router-dom";
 
@@ -32,6 +34,9 @@ function EditPage ({ setIsLoggedIn }) {
 
     }
 
+   
+
+    
     function removeUser() {
         
         const user = values;

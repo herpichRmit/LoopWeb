@@ -23,6 +23,12 @@ async function findUser(id) {
   return response.data;
 }
 
+async function updateUser(id, user) {
+  const response = await axios.put(API_HOST + `/api/users/select/${id}`, user);
+
+  return response.data;
+}
+
 async function createUser(user) {
 
   try {
@@ -104,7 +110,7 @@ function removeUser() {
 }
 
 export {
-  verifyUser, findUser, createUser,
+  verifyUser, findUser, createUser, updateUser,
   getMovies, getMovie,
   getReviews, createReview, updateReview, removeReview,
   getUser, removeUser,
