@@ -40,7 +40,7 @@ function Header({ isLoggedIn }) {
                         ) : (
                             <div>
                                 <NavLink to="/signIn" className="button-black">Sign In</NavLink>
-                                <NavLink to="/signUp" >Sign Up</NavLink>
+                                <NavLink to="/signUp" className="button-black">Sign Up</NavLink>
                             </div>
                         )}
                     </div>

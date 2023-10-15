@@ -8,6 +8,19 @@
     width: 100vw;
 }
 
+.signIn-border-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 25vh;
+    width: 20vw; /* Adjust the width to fit the content */
+    border: 2px dotted #000000; /* Add a dotted border around the container */
+    border-radius: 8px; /* Add rounded corners */
+    padding: 20px; /* Add some padding to the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #f5f5f5;
+  }
+
 .signIn-display_flex{
     display: flex;
     flex-direction: column;
@@ -15,3 +28,48 @@
     justify-content: center;
     align-items: center;
 }
+
+/* Form Styles */
+.signIn-container form {
+    width: 100%;
+  }
+  
+  /* Field Styles */
+  .field {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  /* Error Styles */
+  .help.is-danger {
+    color: #ff3860;
+    font-size: 14px;
+  }
+  
+  /* Button Styles */
+  .button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  } 
