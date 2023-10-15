@@ -3,13 +3,14 @@ import './SignUpPage.css';
 import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
 import { useNavigate } from 'react-router-dom';
-
+import { createUser } from "../../data/repository";
 
 // import { useParams } from "react-router-dom";
 
 function SignUpPage ({ setIsLoggedIn }) {
 
     const navigate = useNavigate();
+    
 
     const {
         values,
@@ -19,17 +20,34 @@ function SignUpPage ({ setIsLoggedIn }) {
     } = useForm(signUp, validate);
 
 
-    function signUp() {
+    async function signUp() {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
         const currentDate = new Date();
+        
 
-        const newUser = { ...values, createdAt: currentDate.toISOString() };
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        //const newUser = { ...values, createdAt: currentDate.toISOString() };
+        //localStorage.setItem('currentUser', JSON.stringify(newUser));
 
         //localStorage.setItem('currentUser', JSON.stringify(user));
+        const newUser = {
+            user_email: values.email,            // Map to user_email
+            first_name: values.name,            // Map to first_name
+            last_name: '',                      // Map to last_name (you may add this to your form if necessary)
+            password: values.password,          // This value should not be hashed in your frontend
+            join_date: new Date().toISOString(), // Map to join_date
+          };
 
-        setIsLoggedIn(true);
-        navigate('/');
+        try {
+            // Send a POST request to create the user
+            await createUser(newUser);
+    
+            // Update the state and navigate
+            setIsLoggedIn(true);
+            navigate('/');
+    
+        } catch (error) {
+            console.error("Error creating user:", error);
+        }
 
 
     }

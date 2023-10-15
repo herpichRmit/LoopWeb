@@ -24,9 +24,16 @@ async function findUser(id) {
 }
 
 async function createUser(user) {
-  const response = await axios.post(API_HOST + "/api/users", user);
 
-  return response.data;
+  try {
+    const response = await axios.post(API_HOST + "/api/users", user);
+
+    return response.data;
+  } catch (error) {
+    console.error("Axios POST request error:", error);
+    throw error;
+  }
+  
 }
 
 // --- Review -------------------------------------------------------------------------------------
