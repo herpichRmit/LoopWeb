@@ -3,16 +3,22 @@ import React, { useState } from "react";
 import './SignInPage.css';
 import useForm from "../../components/common/form/useForm"
 import validate from "../../components/common/form/LoginFormValidationRules";
-import userData from '../../data/old/users.json';
+//import userData from '../../data/old/users.json';
 import { useNavigate } from 'react-router-dom';
+
 
 // Ethan added ... 
 import { verifyUser } from "../../data/repository";
+import EditAccountModal from "../../components/editAccountModal/EditAccountModal";
 // --
 
 // import { useParams } from "react-router-dom";
 
 function SignInPage ({ setIsLoggedIn }) {
+
+    const navigate = useNavigate();
+    
+    const [user, setUser] = useState(null);
 
     const {
         values,
@@ -21,35 +27,53 @@ function SignInPage ({ setIsLoggedIn }) {
         handleSubmit
     } = useForm(signIn, validate);
 
-    const navigate = useNavigate();
+    
 
-    function signIn() {
+    async function signIn() {
         // Maybe store user info so that they can edit their profile? and submit reviews with their profile
 
         //const user = {...values, isLoggedIn: true };
 
         //localStorage.setItem('currentUser', JSON.stringify(user));
 
-        const currUser = JSON.parse(localStorage.getItem('currentUser'));
+        //const currUser = JSON.parse(localStorage.getItem('currentUser'));
         const { email, password } = values;
 
-        const userFound = userData.find(user => user.email === email && user.password === password); // found in user.json file
-        const currUserFound = currUser && currUser.email === email && currUser.password === password; // found in local storage
+        try {
+            const userData = await verifyUser(email, password);
 
-        // Ethan added ... this async function will call verifyUser which will call backend
-        // See week 8 practical practical code
-        //      const user = await verifyUser(fields.username, fields.password);
-        // --
-
-        if (currUserFound || userFound) {
-            setIsLoggedIn(true);
-
-            if (userFound) {
+            if (userData !== null) {
+                setUser(userData);
+                setIsLoggedIn(true);
                 localStorage.setItem('isLoggedIn', 'true');
+                navigate('/');
+                
+                
+                //navigate('/', {state: { user }});
+
+                console.log("User Info:", user)
+
             }
+        } catch (error){
+            console.error("Authentication failed:", error);
         }
 
-        navigate('/');
+        // const userFound = userData.find(user => user.email === email && user.password === password); // found in user.json file
+        // const currUserFound = currUser && currUser.email === email && currUser.password === password; // found in local storage
+
+        // // Ethan added ... this async function will call verifyUser which will call backend
+        // // See week 8 practical practical code
+        // //      const user = await verifyUser(fields.username, fields.password);
+        // // --
+
+        // if (currUserFound || userFound) {
+        //     setIsLoggedIn(true);
+
+        //     if (userFound) {
+        //         localStorage.setItem('isLoggedIn', 'true');
+        //     }
+        // }
+
 
     }
 
